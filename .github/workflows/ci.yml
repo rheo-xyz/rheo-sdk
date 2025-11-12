@@ -1,4 +1,4 @@
-name: Publish Release
+name: CI
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
