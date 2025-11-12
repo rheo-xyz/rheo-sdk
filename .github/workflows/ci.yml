@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,16 +26,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/lcov.info
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
       - name: Bump version
         run: |
           npm version patch --no-git-tag-version
@@ -42,12 +45,12 @@ jobs:
           ver=$(node -p "require('./package.json').version")
           git commit -m "chore: release v$ver [skip ci]"
           git push origin HEAD:main
-      - name: Install dependencies
-        run: npm install
-      - name: Publish package
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Update npm
+        run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+      - run: npm publish
       - name: Get version
         id: version
         run: echo "version=$(node -p 'require("./package.json").version')" >> $GITHUB_OUTPUT
