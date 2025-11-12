@@ -1,5 +1,5 @@
 {
-  "name": "@rheo/sdk",
+  "name": "rheo/sdk",
   "version": "0.2.12",
   "description": "Rheo TypeScript SDK",
   "type": "module",
