@@ -1,18 +1,18 @@
-# @rheo-xyz/sdk [![Coverage Status](https://coveralls.io/repos/github/rheo-xyz/sdk/badge.svg?branch=main)](https://coveralls.io/github/rheo-xyz/sdk?branch=main) [![npm version](https://img.shields.io/npm/v/@rheo-xyz/sdk)](https://www.npmjs.com/package/rheo/sdk)
+# @rheo/sdk [![Coverage Status](https://coveralls.io/repos/github/rheo-xyz/sdk/badge.svg?branch=main)](https://coveralls.io/github/rheo-xyz/sdk?branch=main) [![npm version](https://img.shields.io/npm/v/@rheo/sdk)](https://www.npmjs.com/package/@rheo/sdk)
 
 Rheo TypeScript SDK
 
 ## Installation
 
 ```bash
-npm install @rheo-xyz/sdk
+npm install @rheo/sdk
 ```
 
 ## Usage
 
 ```ts
 import { ethers } from "ethers";
-import SDK from "@rheo-xyz/sdk";
+import SDK from "@rheo/sdk";
 
 // Initialize the SDK with the Size Factory address and market addresses
 const sdk = new SDK({
