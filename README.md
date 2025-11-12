@@ -1,18 +1,18 @@
-# @sizecredit/sdk [![Coverage Status](https://coveralls.io/repos/github/SizeCredit/sdk/badge.svg?branch=main)](https://coveralls.io/github/SizeCredit/sdk?branch=main) [![npm version](https://img.shields.io/npm/v/@sizecredit/sdk)](https://www.npmjs.com/package/@sizecredit/sdk)
+# @rheo-xyz/sdk [![Coverage Status](https://coveralls.io/repos/github/rheo-xyz/sdk/badge.svg?branch=main)](https://coveralls.io/github/rheo-xyz/sdk?branch=main) [![npm version](https://img.shields.io/npm/v/@rheo-xyz/sdk)](https://www.npmjs.com/package/@rheo-xyz/sdk)
 
-Size TypeScript SDK for interacting with the Size protocol
+Rheo TypeScript SDK
 
 ## Installation
 
 ```bash
-npm install @sizecredit/sdk
+npm install @rheo-xyz/sdk
 ```
 
 ## Usage
 
 ```ts
 import { ethers } from "ethers";
-import SDK from "@sizecredit/sdk";
+import SDK from "@rheo-xyz/sdk";
 
 // Initialize the SDK with the Size Factory address and market addresses
 const sdk = new SDK({

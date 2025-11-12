@@ -1,7 +1,7 @@
 {
-  "name": "@sizecredit/sdk",
+  "name": "@rheo-xyz/sdk",
   "version": "0.2.11",
-  "description": "Size TypeScript SDK for interacting with the Size protocol",
+  "description": "Rheo TypeScript SDK",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -48,6 +48,7 @@
   },
   "keywords": [
     "sdk",
+    "rheo",
     "size",
     "ethers",
     "typescript",
