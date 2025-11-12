@@ -3,6 +3,7 @@
   "version": "0.2.13",
   "description": "Rheo TypeScript SDK",
   "type": "module",
+  "url": "https://github.com/rheo-xyz/rheo-sdk",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
