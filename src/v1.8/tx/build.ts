@@ -21,13 +21,6 @@ function isERC20Operation(
   return "functionName" in operation && operation.functionName === "approve";
 }
 
-function isCollectionsOperation(functionName: string): boolean {
-  return (
-    functionName === "subscribeToCollections" ||
-    functionName === "unsubscribeFromCollections"
-  );
-}
-
 interface Subcall {
   target: Address;
   calldata: string;
@@ -90,9 +83,14 @@ export class TxBuilder {
       } /*isFactoryOperation*/ else {
         const { functionName, params } = operation;
 
+        const functionFragment = this.ISizeFactory.getFunction(functionName);
+        const shouldWrapArray =
+          functionFragment.inputs.length === 1 &&
+          functionFragment.inputs[0].type.endsWith("[]");
+        const factoryParams = shouldWrapArray ? [params] : params;
         const calldata = this.ISizeFactory.encodeFunctionData(
           functionName,
-          isCollectionsOperation(functionName) ? [params] : params,
+          factoryParams,
         );
         return {
           target: this.sizeFactory,
