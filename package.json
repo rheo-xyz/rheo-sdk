@@ -28,6 +28,11 @@
       "require": "./dist/cjs/v1.8/*.js",
       "types": "./dist/types/v1.8/*.d.ts"
     },
+    "./fm-v1.8/*": {
+      "import": "./dist/esm/fm-v1.8/*.js",
+      "require": "./dist/cjs/fm-v1.8/*.js",
+      "types": "./dist/types/fm-v1.8/*.d.ts"
+    },
     "./v1.7/*": {
       "import": "./dist/esm/v1.7/*.js",
       "require": "./dist/cjs/v1.7/*.js",

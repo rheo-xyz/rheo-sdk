@@ -1,11 +1,16 @@
 import { ethers } from "ethers";
 import ErrorsV1_8 from "../v1.8/abi/Errors.json";
+import ErrorsFM_V1_8 from "../fm-v1.8/abi/Errors.json";
 import ErrorsV1_7 from "../v1.7/abi/Errors.json";
 import CollectionsManagerV1_8 from "../v1.8/abi/CollectionsManager.json";
+import CollectionsManagerFM_V1_8 from "../fm-v1.8/abi/CollectionsManager.json";
 import IERC20Errors from "../erc20/abi/IERC20Errors.json";
 import IERC20ErrorsV1_8 from "../v1.8/abi/IERC20Errors.json";
+import IERC20ErrorsFM_V1_8 from "../fm-v1.8/abi/IERC20Errors.json";
 import IERC721ErrorsV1_8 from "../v1.8/abi/IERC721Errors.json";
+import IERC721ErrorsFM_V1_8 from "../fm-v1.8/abi/IERC721Errors.json";
 import IERC1155ErrorsV1_8 from "../v1.8/abi/IERC1155Errors.json";
+import IERC1155ErrorsFM_V1_8 from "../fm-v1.8/abi/IERC1155Errors.json";
 import selector from "../helpers/selector";
 
 export class ErrorDecoder {
@@ -14,12 +19,17 @@ export class ErrorDecoder {
   constructor() {
     const set = new Set();
     const abi = [
+      ...ErrorsFM_V1_8.abi,
       ...ErrorsV1_8.abi,
       ...ErrorsV1_7.abi,
+      ...CollectionsManagerFM_V1_8.abi,
       ...CollectionsManagerV1_8.abi,
       ...IERC20Errors.abi,
+      ...IERC20ErrorsFM_V1_8.abi,
       ...IERC20ErrorsV1_8.abi,
+      ...IERC721ErrorsFM_V1_8.abi,
       ...IERC721ErrorsV1_8.abi,
+      ...IERC1155ErrorsFM_V1_8.abi,
       ...IERC1155ErrorsV1_8.abi,
     ];
     const deduped = abi

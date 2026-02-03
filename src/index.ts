@@ -3,9 +3,17 @@ import {
   MarketOperation as MarketOperationV1_8,
 } from "./v1.8/actions/market";
 import {
+  MarketActions as MarketActionsFM_V1_8,
+  MarketOperation as MarketOperationFM_V1_8,
+} from "./fm-v1.8/actions/market";
+import {
   FactoryActions as FactoryActionsV1_8,
   FactoryOperation as FactoryOperationV1_8,
 } from "./v1.8/actions/factory";
+import {
+  FactoryActions as FactoryActionsFM_V1_8,
+  FactoryOperation as FactoryOperationFM_V1_8,
+} from "./fm-v1.8/actions/factory";
 import {
   FactoryActions as FactoryActionsV1_7,
   FactoryOperation as FactoryOperationV1_7,
@@ -15,6 +23,7 @@ import {
   MarketOperation as MarketOperationV1_7,
 } from "./v1.7/actions/market";
 import { TxBuilder as TxBuilderV1_8 } from "./v1.8/tx/build";
+import { TxBuilder as TxBuilderFM_V1_8 } from "./fm-v1.8/tx/build";
 import { TxBuilder as TxBuilderV1_7 } from "./v1.7/tx/build";
 
 import { FullCopy, NoCopy, NullCopy } from "./constants";
@@ -34,7 +43,7 @@ export interface TxArgs {
   value?: BigNumberish;
 }
 
-export type Version = "v1.7" | "v1.8";
+export type Version = "v1.7" | "v1.8" | "FM-v1.8";
 
 interface SDKParamsCommon {
   labels?: Record<string, string>;
@@ -45,25 +54,39 @@ export interface SDKParamsV1_8 extends SDKParamsCommon {
   version: "v1.8";
 }
 
+export interface SDKParamsFM_V1_8 extends SDKParamsCommon {
+  version: "FM-v1.8";
+}
+
 export interface SDKParamsV1_7 extends SDKParamsCommon {
   version: "v1.7";
 }
 
-export type SDKParams = SDKParamsV1_7 | SDKParamsV1_8;
+export type SDKParams = SDKParamsV1_7 | SDKParamsV1_8 | SDKParamsFM_V1_8;
 
 export type MarketActionsByVersion<T extends Version> = T extends "v1.8"
   ? MarketActionsV1_8
+  : T extends "FM-v1.8"
+    ? MarketActionsFM_V1_8
   : MarketActionsV1_7;
 export type FactoryActionsByVersion<T extends Version> = T extends "v1.8"
   ? FactoryActionsV1_8
+  : T extends "FM-v1.8"
+    ? FactoryActionsFM_V1_8
   : FactoryActionsV1_7;
 export type TxBuilderByVersion<T extends Version> = T extends "v1.8"
   ? TxBuilderV1_8
+  : T extends "FM-v1.8"
+    ? TxBuilderFM_V1_8
   : TxBuilderV1_7;
 
 export type OperationV1_8 =
   | MarketOperationV1_8
   | FactoryOperationV1_8
+  | ERC20Operation;
+export type OperationFM_V1_8 =
+  | MarketOperationFM_V1_8
+  | FactoryOperationFM_V1_8
   | ERC20Operation;
 export type OperationV1_7 =
   | MarketOperationV1_7
@@ -103,6 +126,14 @@ class SDK<T extends Version> {
       this.txBuilder = new TxBuilderV1_8(
         this.sizeFactory,
       ) as TxBuilderByVersion<T>;
+    } else if (params.version === "FM-v1.8") {
+      this.factory =
+        new FactoryActionsFM_V1_8() as FactoryActionsByVersion<T>;
+      this.market = new MarketActionsFM_V1_8() as MarketActionsByVersion<T>;
+
+      this.txBuilder = new TxBuilderFM_V1_8(
+        this.sizeFactory,
+      ) as TxBuilderByVersion<T>;
     } else {
       this.factory =
         new FactoryActionsV1_7() as unknown as FactoryActionsByVersion<T>;
@@ -122,17 +153,29 @@ class SDK<T extends Version> {
           recipient?: Address,
         ) => TxArgs[];
       }
-    : {
-        build: (
-          onBehalfOf: Address,
-          operations: OperationV1_7[],
-          recipient?: Address,
-        ) => TxArgs[];
-      } {
+    : T extends "FM-v1.8"
+      ? {
+          build: (
+            onBehalfOf: Address,
+            operations: OperationFM_V1_8[],
+            recipient?: Address,
+          ) => TxArgs[];
+        }
+      : {
+          build: (
+            onBehalfOf: Address,
+            operations: OperationV1_7[],
+            recipient?: Address,
+          ) => TxArgs[];
+        } {
     return {
       build: (
         onBehalfOf: Address,
-        operations: T extends "v1.8" ? OperationV1_8[] : OperationV1_7[],
+        operations: T extends "v1.8"
+          ? OperationV1_8[]
+          : T extends "FM-v1.8"
+            ? OperationFM_V1_8[]
+            : OperationV1_7[],
         recipient?: Address,
       ) => this.txBuilder.build(onBehalfOf, operations as any, recipient),
     } as any;

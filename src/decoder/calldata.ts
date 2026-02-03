@@ -2,10 +2,13 @@ import { ethers } from "ethers";
 import { Result } from "@ethersproject/abi";
 
 import SizeFactoryV1_8 from "../v1.8/abi/SizeFactory.json";
+import SizeFactoryFM_V1_8 from "../fm-v1.8/abi/SizeFactory.json";
 import SizeFactoryV1_7 from "../v1.7/abi/SizeFactory.json";
 import SizeV1_7 from "../v1.7/abi/Size.json";
 import SizeV1_8 from "../v1.8/abi/Size.json";
+import SizeFM_V1_8 from "../fm-v1.8/abi/Size.json";
 import CollectionsManagerV1_8 from "../v1.8/abi/CollectionsManager.json";
+import CollectionsManagerFM_V1_8 from "../fm-v1.8/abi/CollectionsManager.json";
 import ERC20 from "../erc20/abi/ERC20.json";
 
 import { Action, isActionSet } from "../Authorization";
@@ -17,10 +20,13 @@ export class CalldataDecoder {
   constructor(labels: Record<string, string> = {}) {
     const abis = [
       ...CollectionsManagerV1_8.abi,
+      ...CollectionsManagerFM_V1_8.abi,
       ...SizeFactoryV1_8.abi,
+      ...SizeFactoryFM_V1_8.abi,
       ...SizeFactoryV1_7.abi,
       ...SizeV1_7.abi,
       ...SizeV1_8.abi,
+      ...SizeFM_V1_8.abi,
       ...ERC20.abi,
     ];
 

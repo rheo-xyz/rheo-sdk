@@ -17,7 +17,7 @@ import SDK from "@rheo/sdk";
 // Initialize the SDK with the Size Factory address and market addresses
 const sdk = new SDK({
   sizeFactory: "<SIZE_FACTORY_ADDRESS>",
-  version: "v1.8", // or "v1.7"
+  version: "v1.8", // or "v1.7" | "FM-v1.8"
   labels: {
     "<SIZE_FACTORY_ADDRESS>": "SizeFactory",
   },
@@ -27,6 +27,10 @@ const sdk = new SDK({
 ## Features
 
 ### Build the transaction target and calldata from an array of operations
+
+FM-v1.8 notes:
+- Fixed-maturity offers only: `buy/sellCreditLimit` use `{ maturities[], aprs[] }`.
+- Market orders take `maturity` (not `tenor`).
 
 ```ts
 const txs = size.tx.build(alice, [
