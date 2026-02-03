@@ -2,6 +2,7 @@ import { describe, expect, test } from "@jest/globals";
 import { ethers } from "ethers";
 import SDK from "../src";
 import SizeABI from "../src/fm-v1.8/abi/Size.json";
+import SizeFactoryABI from "../src/fm-v1.8/abi/SizeFactory.json";
 import ErrorsABI from "../src/fm-v1.8/abi/Errors.json";
 
 describe("@rheo/sdk FM-v1.8", () => {
@@ -16,6 +17,7 @@ describe("@rheo/sdk FM-v1.8", () => {
   const usdc = "0x0000000000000000000000000000000000008888";
 
   const ISize = new ethers.utils.Interface(SizeABI.abi);
+  const ISizeFactory = new ethers.utils.Interface(SizeFactoryABI.abi);
   const IErrors = new ethers.utils.Interface(ErrorsABI.abi);
 
   test("builds fixed-maturity buyCreditLimit", () => {
@@ -329,6 +331,36 @@ describe("@rheo/sdk FM-v1.8", () => {
     )
   ]
 )`);
+  });
+
+  test("builds subscribe/unsubscribe with BigNumberish[] inputs", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "FM-v1.8",
+    });
+
+    const subscribeParams = [ethers.BigNumber.from(42), "43"];
+    const unsubscribeParams = [ethers.BigNumber.from(13), "14"];
+
+    const txs = sdk.tx.build(alice, [
+      sdk.factory.subscribeToCollections(subscribeParams),
+      sdk.factory.unsubscribeFromCollections(unsubscribeParams),
+    ]);
+
+    const subscribeData = ISizeFactory.encodeFunctionData(
+      "subscribeToCollections",
+      [subscribeParams],
+    );
+    const unsubscribeData = ISizeFactory.encodeFunctionData(
+      "unsubscribeFromCollections",
+      [unsubscribeParams],
+    );
+    const expected = ISizeFactory.encodeFunctionData("multicall", [
+      [subscribeData, unsubscribeData],
+    ]);
+
+    expect(txs[0].target).toBe(sizeFactory);
+    expect(txs[0].data).toBe(expected);
   });
 
   test("removes liquidateWithReplacement from interface", () => {
