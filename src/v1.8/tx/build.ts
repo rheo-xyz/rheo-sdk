@@ -21,10 +21,10 @@ function isERC20Operation(
   return "functionName" in operation && operation.functionName === "approve";
 }
 
-function isBigNumberishArray(params: unknown): params is BigNumberish[] {
+function isCollectionsOperation(functionName: string): boolean {
   return (
-    Array.isArray(params) &&
-    params.every((p) => typeof p === "bigint" || typeof p === "number")
+    functionName === "subscribeToCollections" ||
+    functionName === "unsubscribeFromCollections"
   );
 }
 
@@ -92,7 +92,7 @@ export class TxBuilder {
 
         const calldata = this.ISizeFactory.encodeFunctionData(
           functionName,
-          isBigNumberishArray(params) ? [params] : params,
+          isCollectionsOperation(functionName) ? [params] : params,
         );
         return {
           target: this.sizeFactory,
@@ -202,7 +202,7 @@ export class TxBuilder {
     const subcalls = this.getSubcalls(operations, onBehalfOf, recipient);
 
     if (subcalls.length === 0) {
-      throw new Error("[@sizecredit/sdk] no operations to execute");
+      throw new Error("[@rheo/sdk] no operations to execute");
     } else if (subcalls.length == 1) {
       return [
         {

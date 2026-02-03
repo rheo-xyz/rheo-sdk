@@ -38,7 +38,7 @@ export class TxBuilder {
     recipient?: Address,
   ): TxArgs[] {
     if (operations.length === 0) {
-      throw new Error("[@sizecredit/sdk] no operations to execute");
+      throw new Error("[@rheo/sdk] no operations to execute");
     }
 
     const toBigNumber = (v?: BigNumberish) =>
