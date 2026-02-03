@@ -202,7 +202,7 @@ export class TxBuilder {
     const subcalls = this.getSubcalls(operations, onBehalfOf, recipient);
 
     if (subcalls.length === 0) {
-      throw new Error("[@sizecredit/sdk] no operations to execute");
+      throw new Error("[@rheo/sdk] no operations to execute");
     } else if (subcalls.length == 1) {
       return [
         {
