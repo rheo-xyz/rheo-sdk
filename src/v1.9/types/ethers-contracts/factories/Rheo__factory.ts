@@ -2684,7 +2684,7 @@ type RheoConstructorParams =
   | ConstructorParameters<typeof ContractFactory>;
 
 const isSuperArgs = (
-  xs: RheoConstructorParams
+  xs: RheoConstructorParams,
 ): xs is ConstructorParameters<typeof ContractFactory> => {
   return (
     typeof xs[0] === "string" ||
@@ -2712,7 +2712,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/BuyCreditMarket.sol:BuyCreditMarket"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2721,7 +2721,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/PartialRepay.sol:PartialRepay"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2730,7 +2730,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/UpdateConfig.sol:UpdateConfig"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2739,7 +2739,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/SetUserConfiguration.sol:SetUserConfiguration"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2748,14 +2748,14 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/SellCreditLimit.sol:SellCreditLimit"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$fad1da84a532053b53119316a58e977f10\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/OfferLibrary.sol:OfferLibrary"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2764,14 +2764,14 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/SellCreditMarket.sol:SellCreditMarket"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$b44e0fdf2f6bdeffc1681a5a467d23dde6\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/RiskLibrary.sol:RiskLibrary"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2780,7 +2780,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/Compensate.sol:Compensate"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2789,7 +2789,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/SelfLiquidate.sol:SelfLiquidate"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2798,21 +2798,21 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/Initialize.sol:Initialize"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$c6aecf0de9c97d330c260596cb45f01743\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/actions/SetVault.sol:SetVault"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$674c94602fbdb88ca53d9ba4295c8813fa\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/LoanLibrary.sol:LoanLibrary"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2821,14 +2821,14 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/SetCopyLimitOrderConfigs.sol:SetCopyLimitOrderConfigs"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$45d7492db284be01938913cb41b9cac2a6\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/actions/Repay.sol:Repay"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2837,7 +2837,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/BuyCreditLimit.sol:BuyCreditLimit"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2846,28 +2846,28 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/Liquidate.sol:Liquidate"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$ebce6ba8505acc62d937fb713060c40a3c\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/actions/Claim.sol:Claim"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$7947dedfaba9c59621bd8bcc87e3fb80f1\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/actions/Withdraw.sol:Withdraw"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
       new RegExp("__\\$d49e499a4608ab3aca09b91fe5950492b6\\$__", "g"),
       linkLibraryAddresses["src/market/libraries/actions/Deposit.sol:Deposit"]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -2876,7 +2876,7 @@ export class Rheo__factory extends ContractFactory {
         "src/market/libraries/actions/MarketShutdown.sol:MarketShutdown"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     return linkedBytecode;
@@ -2886,7 +2886,7 @@ export class Rheo__factory extends ContractFactory {
     return super.deploy(overrides || {}) as Promise<Rheo>;
   }
   override getDeployTransaction(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }

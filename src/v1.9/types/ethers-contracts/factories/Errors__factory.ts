@@ -1079,7 +1079,7 @@ type ErrorsConstructorParams =
   | ConstructorParameters<typeof ContractFactory>;
 
 const isSuperArgs = (
-  xs: ErrorsConstructorParams
+  xs: ErrorsConstructorParams,
 ): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1;
 
 export class Errors__factory extends ContractFactory {
@@ -1095,7 +1095,7 @@ export class Errors__factory extends ContractFactory {
     return super.deploy(overrides || {}) as Promise<Errors>;
   }
   override getDeployTransaction(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }

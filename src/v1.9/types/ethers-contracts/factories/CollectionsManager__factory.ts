@@ -1783,7 +1783,7 @@ type CollectionsManagerConstructorParams =
   | ConstructorParameters<typeof ContractFactory>;
 
 const isSuperArgs = (
-  xs: CollectionsManagerConstructorParams
+  xs: CollectionsManagerConstructorParams,
 ): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1;
 
 export class CollectionsManager__factory extends ContractFactory {
@@ -1796,12 +1796,12 @@ export class CollectionsManager__factory extends ContractFactory {
   }
 
   override deploy(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<CollectionsManager> {
     return super.deploy(overrides || {}) as Promise<CollectionsManager>;
   }
   override getDeployTransaction(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }
@@ -1819,7 +1819,7 @@ export class CollectionsManager__factory extends ContractFactory {
   }
   static connect(
     address: string,
-    signerOrProvider: Signer | Provider
+    signerOrProvider: Signer | Provider,
   ): CollectionsManager {
     return new Contract(address, _abi, signerOrProvider) as CollectionsManager;
   }

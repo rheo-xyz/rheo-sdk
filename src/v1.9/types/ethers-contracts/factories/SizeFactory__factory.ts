@@ -1558,7 +1558,7 @@ type SizeFactoryConstructorParams =
   | ConstructorParameters<typeof ContractFactory>;
 
 const isSuperArgs = (
-  xs: SizeFactoryConstructorParams
+  xs: SizeFactoryConstructorParams,
 ): xs is ConstructorParameters<typeof ContractFactory> => {
   return (
     typeof xs[0] === "string" ||
@@ -1576,13 +1576,13 @@ export class SizeFactory__factory extends ContractFactory {
       super(
         _abi,
         SizeFactory__factory.linkBytecode(linkLibraryAddresses),
-        signer
+        signer,
       );
     }
   }
 
   static linkBytecode(
-    linkLibraryAddresses: SizeFactoryLibraryAddresses
+    linkLibraryAddresses: SizeFactoryLibraryAddresses,
   ): string {
     let linkedBytecode = _bytecode;
 
@@ -1592,7 +1592,7 @@ export class SizeFactory__factory extends ContractFactory {
         "src/factory/libraries/MarketFactoryLibrary.sol:MarketFactoryLibrary"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -1601,7 +1601,7 @@ export class SizeFactory__factory extends ContractFactory {
         "src/factory/libraries/PriceFeedFactoryLibrary.sol:PriceFeedFactoryLibrary"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     linkedBytecode = linkedBytecode.replace(
@@ -1610,19 +1610,19 @@ export class SizeFactory__factory extends ContractFactory {
         "src/factory/libraries/NonTransferrableRebasingTokenVaultLibrary.sol:NonTransferrableRebasingTokenVaultLibrary"
       ]
         .replace(/^0x/, "")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     return linkedBytecode;
   }
 
   override deploy(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<SizeFactory> {
     return super.deploy(overrides || {}) as Promise<SizeFactory>;
   }
   override getDeployTransaction(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }
@@ -1640,7 +1640,7 @@ export class SizeFactory__factory extends ContractFactory {
   }
   static connect(
     address: string,
-    signerOrProvider: Signer | Provider
+    signerOrProvider: Signer | Provider,
   ): SizeFactory {
     return new Contract(address, _abi, signerOrProvider) as SizeFactory;
   }

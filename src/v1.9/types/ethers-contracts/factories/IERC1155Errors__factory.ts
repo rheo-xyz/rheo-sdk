@@ -121,7 +121,7 @@ export class IERC1155Errors__factory {
   }
   static connect(
     address: string,
-    signerOrProvider: Signer | Provider
+    signerOrProvider: Signer | Provider,
   ): IERC1155Errors {
     return new Contract(address, _abi, signerOrProvider) as IERC1155Errors;
   }

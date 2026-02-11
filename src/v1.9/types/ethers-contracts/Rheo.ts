@@ -44,7 +44,7 @@ export type BuyCreditLimitOnBehalfOfParamsStruct = {
 
 export type BuyCreditLimitOnBehalfOfParamsStructOutput = [
   BuyCreditLimitParamsStructOutput,
-  string
+  string,
 ] & { params: BuyCreditLimitParamsStructOutput; onBehalfOf: string };
 
 export type BuyCreditMarketParamsStruct = {
@@ -68,7 +68,7 @@ export type BuyCreditMarketParamsStructOutput = [
   BigNumber,
   boolean,
   BigNumber,
-  string
+  string,
 ] & {
   borrower: string;
   creditPositionId: BigNumber;
@@ -90,7 +90,7 @@ export type BuyCreditMarketOnBehalfOfParamsStruct = {
 export type BuyCreditMarketOnBehalfOfParamsStructOutput = [
   BuyCreditMarketParamsStructOutput,
   string,
-  string
+  string,
 ] & {
   params: BuyCreditMarketParamsStructOutput;
   onBehalfOf: string;
@@ -122,7 +122,7 @@ export type CompensateOnBehalfOfParamsStruct = {
 
 export type CompensateOnBehalfOfParamsStructOutput = [
   CompensateParamsStructOutput,
-  string
+  string,
 ] & { params: CompensateParamsStructOutput; onBehalfOf: string };
 
 export type DataViewStruct = {
@@ -144,7 +144,7 @@ export type DataViewStructOutput = [
   string,
   string,
   string,
-  string
+  string,
 ] & {
   nextDebtPositionId: BigNumber;
   nextCreditPositionId: BigNumber;
@@ -175,7 +175,7 @@ export type DepositOnBehalfOfParamsStruct = {
 
 export type DepositOnBehalfOfParamsStructOutput = [
   DepositParamsStructOutput,
-  string
+  string,
 ] & { params: DepositParamsStructOutput; onBehalfOf: string };
 
 export type InitializeFeeConfigParamsStruct = {
@@ -193,7 +193,7 @@ export type InitializeFeeConfigParamsStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  string
+  string,
 ] & {
   swapFeeAPR: BigNumber;
   fragmentationFee: BigNumber;
@@ -214,7 +214,7 @@ export type CreditPositionStructOutput = [
   string,
   boolean,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   lender: string;
   forSale: boolean;
@@ -233,7 +233,7 @@ export type DebtPositionStructOutput = [
   string,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   borrower: string;
   futureValue: BigNumber;
@@ -262,7 +262,7 @@ export type SellCreditMarketParamsStructOutput = [
   BigNumber,
   boolean,
   BigNumber,
-  string
+  string,
 ] & {
   lender: string;
   creditPositionId: BigNumber;
@@ -288,7 +288,7 @@ export type CopyLimitOrderConfigStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   minTenor: BigNumber;
   maxTenor: BigNumber;
@@ -318,7 +318,7 @@ export type UserStructOutput = [
   FixedMaturityLimitOrderStructOutput,
   FixedMaturityLimitOrderStructOutput,
   BigNumber,
-  boolean
+  boolean,
 ] & {
   loanOffer: FixedMaturityLimitOrderStructOutput;
   borrowOffer: FixedMaturityLimitOrderStructOutput;
@@ -339,7 +339,7 @@ export type UserViewStructOutput = [
   string,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   user: UserStructOutput;
   account: string;
@@ -363,7 +363,7 @@ export type InitializeRiskConfigParamsStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  BigNumber[]
+  BigNumber[],
 ] & {
   crOpening: BigNumber;
   crLiquidation: BigNumber;
@@ -394,7 +394,7 @@ export type InitializeDataParamsStructOutput = [
   string,
   string,
   string,
-  string
+  string,
 ] & {
   weth: string;
   underlyingCollateralToken: string;
@@ -427,7 +427,7 @@ export type MarketShutdownParamsStructOutput = [
   BigNumber[],
   BigNumber[],
   string[],
-  boolean
+  boolean,
 ] & {
   debtPositionIdsToForceLiquidate: BigNumber[];
   creditPositionIdsToClaim: BigNumber[];
@@ -472,7 +472,7 @@ export type SelfLiquidateOnBehalfOfParamsStruct = {
 export type SelfLiquidateOnBehalfOfParamsStructOutput = [
   SelfLiquidateParamsStructOutput,
   string,
-  string
+  string,
 ] & {
   params: SelfLiquidateParamsStructOutput;
   onBehalfOf: string;
@@ -496,7 +496,7 @@ export type SellCreditLimitOnBehalfOfParamsStruct = {
 
 export type SellCreditLimitOnBehalfOfParamsStructOutput = [
   SellCreditLimitParamsStructOutput,
-  string
+  string,
 ] & { params: SellCreditLimitParamsStructOutput; onBehalfOf: string };
 
 export type SellCreditMarketOnBehalfOfParamsStruct = {
@@ -508,7 +508,7 @@ export type SellCreditMarketOnBehalfOfParamsStruct = {
 export type SellCreditMarketOnBehalfOfParamsStructOutput = [
   SellCreditMarketParamsStructOutput,
   string,
-  string
+  string,
 ] & {
   params: SellCreditMarketParamsStructOutput;
   onBehalfOf: string;
@@ -522,7 +522,7 @@ export type SetCopyLimitOrderConfigsParamsStruct = {
 
 export type SetCopyLimitOrderConfigsParamsStructOutput = [
   CopyLimitOrderConfigStructOutput,
-  CopyLimitOrderConfigStructOutput
+  CopyLimitOrderConfigStructOutput,
 ] & {
   copyLoanOfferConfig: CopyLimitOrderConfigStructOutput;
   copyBorrowOfferConfig: CopyLimitOrderConfigStructOutput;
@@ -535,7 +535,7 @@ export type SetCopyLimitOrderConfigsOnBehalfOfParamsStruct = {
 
 export type SetCopyLimitOrderConfigsOnBehalfOfParamsStructOutput = [
   SetCopyLimitOrderConfigsParamsStructOutput,
-  string
+  string,
 ] & { params: SetCopyLimitOrderConfigsParamsStructOutput; onBehalfOf: string };
 
 export type SetUserConfigurationParamsStruct = {
@@ -549,7 +549,7 @@ export type SetUserConfigurationParamsStructOutput = [
   BigNumber,
   boolean,
   boolean,
-  BigNumber[]
+  BigNumber[],
 ] & {
   openingLimitBorrowCR: BigNumber;
   allCreditPositionsForSaleDisabled: boolean;
@@ -564,7 +564,7 @@ export type SetUserConfigurationOnBehalfOfParamsStruct = {
 
 export type SetUserConfigurationOnBehalfOfParamsStructOutput = [
   SetUserConfigurationParamsStructOutput,
-  string
+  string,
 ] & { params: SetUserConfigurationParamsStructOutput; onBehalfOf: string };
 
 export type SetVaultParamsStruct = { vault: string; forfeitOldShares: boolean };
@@ -581,7 +581,7 @@ export type SetVaultOnBehalfOfParamsStruct = {
 
 export type SetVaultOnBehalfOfParamsStructOutput = [
   SetVaultParamsStructOutput,
-  string
+  string,
 ] & { params: SetVaultParamsStructOutput; onBehalfOf: string };
 
 export type UpdateConfigParamsStruct = { key: string; value: BigNumberish };
@@ -610,7 +610,7 @@ export type WithdrawOnBehalfOfParamsStruct = {
 
 export type WithdrawOnBehalfOfParamsStructOutput = [
   WithdrawParamsStructOutput,
-  string
+  string,
 ] & { params: WithdrawParamsStructOutput; onBehalfOf: string };
 
 export declare namespace BuyCreditMarket {
@@ -631,7 +631,7 @@ export declare namespace BuyCreditMarket {
     BigNumber,
     BigNumber,
     BigNumber,
-    BigNumber
+    BigNumber,
   ] & {
     creditPosition: CreditPositionStructOutput;
     borrower: string;
@@ -659,7 +659,7 @@ export declare namespace SellCreditMarket {
     BigNumber,
     BigNumber,
     BigNumber,
-    BigNumber
+    BigNumber,
   ] & {
     creditPosition: CreditPositionStructOutput;
     creditAmountIn: BigNumber;
@@ -799,112 +799,112 @@ export interface RheoInterface extends utils.Interface {
       | "upgradeToAndCall"
       | "version"
       | "withdraw"
-      | "withdrawOnBehalfOf"
+      | "withdrawOnBehalfOf",
   ): FunctionFragment;
 
   encodeFunctionData(
     functionFragment: "DEFAULT_ADMIN_ROLE",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "buyCreditLimit",
-    values: [BuyCreditLimitParamsStruct]
+    values: [BuyCreditLimitParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "buyCreditLimitOnBehalfOf",
-    values: [BuyCreditLimitOnBehalfOfParamsStruct]
+    values: [BuyCreditLimitOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "buyCreditMarket",
-    values: [BuyCreditMarketParamsStruct]
+    values: [BuyCreditMarketParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "buyCreditMarketOnBehalfOf",
-    values: [BuyCreditMarketOnBehalfOfParamsStruct]
+    values: [BuyCreditMarketOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "claim",
-    values: [ClaimParamsStruct]
+    values: [ClaimParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "collateralRatio",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "compensate",
-    values: [CompensateParamsStruct]
+    values: [CompensateParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "compensateOnBehalfOf",
-    values: [CompensateOnBehalfOfParamsStruct]
+    values: [CompensateOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(functionFragment: "data", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "debtTokenAmountToCollateralTokenAmount",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "deposit",
-    values: [DepositParamsStruct]
+    values: [DepositParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "depositOnBehalfOf",
-    values: [DepositOnBehalfOfParamsStruct]
+    values: [DepositOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(functionFragment: "extSload", values: [BytesLike]): string;
   encodeFunctionData(functionFragment: "feeConfig", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getBorrowOfferAPR",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getBuyCreditMarketSwapData",
-    values: [BuyCreditMarketParamsStruct]
+    values: [BuyCreditMarketParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "getCreditPosition",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getDebtPosition",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getLoanOfferAPR",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getRoleAdmin",
-    values: [BytesLike]
+    values: [BytesLike],
   ): string;
   encodeFunctionData(
     functionFragment: "getSellCreditMarketSwapData",
-    values: [SellCreditMarketParamsStruct]
+    values: [SellCreditMarketParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "getUserDefinedBorrowOfferAPR",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getUserDefinedCopyLimitOrderConfigs",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "getUserDefinedLoanOfferAPR",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "getUserView", values: [string]): string;
   encodeFunctionData(
     functionFragment: "grantRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "hasRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "initialize",
@@ -913,307 +913,307 @@ export interface RheoInterface extends utils.Interface {
       InitializeFeeConfigParamsStruct,
       InitializeRiskConfigParamsStruct,
       InitializeOracleParamsStruct,
-      InitializeDataParamsStruct
-    ]
+      InitializeDataParamsStruct,
+    ],
   ): string;
   encodeFunctionData(
     functionFragment: "isUserDefinedLimitOrdersNull",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "liquidate",
-    values: [LiquidateParamsStruct]
+    values: [LiquidateParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "marketShutdown",
-    values: [MarketShutdownParamsStruct]
+    values: [MarketShutdownParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "multicall",
-    values: [BytesLike[]]
+    values: [BytesLike[]],
   ): string;
   encodeFunctionData(functionFragment: "oracle", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "partialRepay",
-    values: [PartialRepayParamsStruct]
+    values: [PartialRepayParamsStruct],
   ): string;
   encodeFunctionData(functionFragment: "pause", values?: undefined): string;
   encodeFunctionData(functionFragment: "paused", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "proxiableUUID",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "renounceRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "repay",
-    values: [RepayParamsStruct]
+    values: [RepayParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "revokeRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "riskConfig",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "selfLiquidate",
-    values: [SelfLiquidateParamsStruct]
+    values: [SelfLiquidateParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "selfLiquidateOnBehalfOf",
-    values: [SelfLiquidateOnBehalfOfParamsStruct]
+    values: [SelfLiquidateOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "sellCreditLimit",
-    values: [SellCreditLimitParamsStruct]
+    values: [SellCreditLimitParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "sellCreditLimitOnBehalfOf",
-    values: [SellCreditLimitOnBehalfOfParamsStruct]
+    values: [SellCreditLimitOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "sellCreditMarket",
-    values: [SellCreditMarketParamsStruct]
+    values: [SellCreditMarketParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "sellCreditMarketOnBehalfOf",
-    values: [SellCreditMarketOnBehalfOfParamsStruct]
+    values: [SellCreditMarketOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setCopyLimitOrderConfigs",
-    values: [SetCopyLimitOrderConfigsParamsStruct]
+    values: [SetCopyLimitOrderConfigsParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setCopyLimitOrderConfigsOnBehalfOf",
-    values: [SetCopyLimitOrderConfigsOnBehalfOfParamsStruct]
+    values: [SetCopyLimitOrderConfigsOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setUserConfiguration",
-    values: [SetUserConfigurationParamsStruct]
+    values: [SetUserConfigurationParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setUserConfigurationOnBehalfOf",
-    values: [SetUserConfigurationOnBehalfOfParamsStruct]
+    values: [SetUserConfigurationOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setVault",
-    values: [SetVaultParamsStruct]
+    values: [SetVaultParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "setVaultOnBehalfOf",
-    values: [SetVaultOnBehalfOfParamsStruct]
+    values: [SetVaultOnBehalfOfParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
-    values: [BytesLike]
+    values: [BytesLike],
   ): string;
   encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "updateConfig",
-    values: [UpdateConfigParamsStruct]
+    values: [UpdateConfigParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "upgradeToAndCall",
-    values: [string, BytesLike]
+    values: [string, BytesLike],
   ): string;
   encodeFunctionData(functionFragment: "version", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "withdraw",
-    values: [WithdrawParamsStruct]
+    values: [WithdrawParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "withdrawOnBehalfOf",
-    values: [WithdrawOnBehalfOfParamsStruct]
+    values: [WithdrawOnBehalfOfParamsStruct],
   ): string;
 
   decodeFunctionResult(
     functionFragment: "DEFAULT_ADMIN_ROLE",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "buyCreditLimit",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "buyCreditLimitOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "buyCreditMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "buyCreditMarketOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "claim", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "collateralRatio",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "compensate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "compensateOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "data", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "debtTokenAmountToCollateralTokenAmount",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "depositOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "extSload", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "feeConfig", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getBorrowOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getBuyCreditMarketSwapData",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getCreditPosition",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getDebtPosition",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getLoanOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getRoleAdmin",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getSellCreditMarketSwapData",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserDefinedBorrowOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserDefinedCopyLimitOrderConfigs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserDefinedLoanOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserView",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isUserDefinedLimitOrdersNull",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "liquidate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "marketShutdown",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "multicall", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "oracle", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "partialRepay",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "proxiableUUID",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "renounceRole",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "repay", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "riskConfig", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "selfLiquidate",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "selfLiquidateOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "sellCreditLimit",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "sellCreditLimitOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "sellCreditMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "sellCreditMarketOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setCopyLimitOrderConfigs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setCopyLimitOrderConfigsOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setUserConfiguration",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setUserConfigurationOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "setVault", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "setVaultOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "updateConfig",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "upgradeToAndCall",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "version", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "withdrawOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
 
   events: {
@@ -1310,15 +1310,15 @@ export interface Rheo extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
+    eventFilter?: TypedEventFilter<TEvent>,
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
   removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
+    eventFilter: TypedEventFilter<TEvent>,
   ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
@@ -1333,68 +1333,68 @@ export interface Rheo extends BaseContract {
 
     buyCreditLimit(
       params: BuyCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     buyCreditLimitOnBehalfOf(
       externalParams: BuyCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     buyCreditMarket(
       params: BuyCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     buyCreditMarketOnBehalfOf(
       externalParams: BuyCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     claim(
       params: ClaimParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     collateralRatio(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     compensate(
       params: CompensateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     compensateOnBehalfOf(
       externalParams: CompensateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     data(overrides?: CallOverrides): Promise<[DataViewStructOutput]>;
 
     debtTokenAmountToCollateralTokenAmount(
       amount: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     deposit(
       params: DepositParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     depositOnBehalfOf(
       params: DepositOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     extSload(
       key: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string] & { result: string }>;
 
     feeConfig(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[InitializeFeeConfigParamsStructOutput]>;
 
     getBorrowOfferAPR(
@@ -1402,22 +1402,22 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getBuyCreditMarketSwapData(
       params: BuyCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BuyCreditMarket.SwapDataBuyCreditMarketStructOutput]>;
 
     getCreditPosition(
       creditPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[CreditPositionStructOutput]>;
 
     getDebtPosition(
       debtPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[DebtPositionStructOutput]>;
 
     getLoanOfferAPR(
@@ -1425,25 +1425,25 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<[string]>;
 
     getSellCreditMarketSwapData(
       params: SellCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[SellCreditMarket.SwapDataSellCreditMarketStructOutput]>;
 
     getUserDefinedBorrowOfferAPR(
       borrower: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getUserDefinedCopyLimitOrderConfigs(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [CopyLimitOrderConfigStructOutput, CopyLimitOrderConfigStructOutput]
     >;
@@ -1451,24 +1451,24 @@ export interface Rheo extends BaseContract {
     getUserDefinedLoanOfferAPR(
       lender: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getUserView(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[UserViewStructOutput]>;
 
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     initialize(
@@ -1477,12 +1477,12 @@ export interface Rheo extends BaseContract {
       r: InitializeRiskConfigParamsStruct,
       o: InitializeOracleParamsStruct,
       d: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     isUserDefinedLimitOrdersNull(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [boolean, boolean] & {
         isLoanOfferNull: boolean;
@@ -1492,30 +1492,30 @@ export interface Rheo extends BaseContract {
 
     liquidate(
       params: LiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     marketShutdown(
       params: MarketShutdownParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     multicall(
       _data: BytesLike[],
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     oracle(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[InitializeOracleParamsStructOutput]>;
 
     partialRepay(
       params: PartialRepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     pause(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     paused(overrides?: CallOverrides): Promise<[boolean]>;
@@ -1525,114 +1525,114 @@ export interface Rheo extends BaseContract {
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     repay(
       params: RepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     riskConfig(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[InitializeRiskConfigParamsStructOutput]>;
 
     selfLiquidate(
       params: SelfLiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     selfLiquidateOnBehalfOf(
       externalParams: SelfLiquidateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     sellCreditLimit(
       params: SellCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     sellCreditLimitOnBehalfOf(
       externalParams: SellCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     sellCreditMarket(
       params: SellCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     sellCreditMarketOnBehalfOf(
       externalParams: SellCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setCopyLimitOrderConfigs(
       params: SetCopyLimitOrderConfigsParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setCopyLimitOrderConfigsOnBehalfOf(
       externalParams: SetCopyLimitOrderConfigsOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setUserConfiguration(
       params: SetUserConfigurationParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setUserConfigurationOnBehalfOf(
       externalParams: SetUserConfigurationOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setVault(
       params: SetVaultParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setVaultOnBehalfOf(
       externalParams: SetVaultOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     unpause(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     updateConfig(
       params: UpdateConfigParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     version(overrides?: CallOverrides): Promise<[string]>;
 
     withdraw(
       params: WithdrawParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     withdrawOnBehalfOf(
       externalParams: WithdrawOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
   };
 
@@ -1642,62 +1642,62 @@ export interface Rheo extends BaseContract {
 
   buyCreditLimit(
     params: BuyCreditLimitParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   buyCreditLimitOnBehalfOf(
     externalParams: BuyCreditLimitOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   buyCreditMarket(
     params: BuyCreditMarketParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   buyCreditMarketOnBehalfOf(
     externalParams: BuyCreditMarketOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   claim(
     params: ClaimParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   collateralRatio(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   compensate(
     params: CompensateParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   compensateOnBehalfOf(
     externalParams: CompensateOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   data(overrides?: CallOverrides): Promise<DataViewStructOutput>;
 
   debtTokenAmountToCollateralTokenAmount(
     amount: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   deposit(
     params: DepositParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   depositOnBehalfOf(
     params: DepositOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   extSload(key: BytesLike, overrides?: CallOverrides): Promise<string>;
 
   feeConfig(
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<InitializeFeeConfigParamsStructOutput>;
 
   getBorrowOfferAPR(
@@ -1705,22 +1705,22 @@ export interface Rheo extends BaseContract {
     collectionId: BigNumberish,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getBuyCreditMarketSwapData(
     params: BuyCreditMarketParamsStruct,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BuyCreditMarket.SwapDataBuyCreditMarketStructOutput>;
 
   getCreditPosition(
     creditPositionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<CreditPositionStructOutput>;
 
   getDebtPosition(
     debtPositionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<DebtPositionStructOutput>;
 
   getLoanOfferAPR(
@@ -1728,25 +1728,25 @@ export interface Rheo extends BaseContract {
     collectionId: BigNumberish,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
 
   getSellCreditMarketSwapData(
     params: SellCreditMarketParamsStruct,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<SellCreditMarket.SwapDataSellCreditMarketStructOutput>;
 
   getUserDefinedBorrowOfferAPR(
     borrower: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getUserDefinedCopyLimitOrderConfigs(
     user: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [CopyLimitOrderConfigStructOutput, CopyLimitOrderConfigStructOutput]
   >;
@@ -1754,24 +1754,24 @@ export interface Rheo extends BaseContract {
   getUserDefinedLoanOfferAPR(
     lender: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getUserView(
     user: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<UserViewStructOutput>;
 
   grantRole(
     role: BytesLike,
     account: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   hasRole(
     role: BytesLike,
     account: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   initialize(
@@ -1780,12 +1780,12 @@ export interface Rheo extends BaseContract {
     r: InitializeRiskConfigParamsStruct,
     o: InitializeOracleParamsStruct,
     d: InitializeDataParamsStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   isUserDefinedLimitOrdersNull(
     user: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [boolean, boolean] & {
       isLoanOfferNull: boolean;
@@ -1795,30 +1795,30 @@ export interface Rheo extends BaseContract {
 
   liquidate(
     params: LiquidateParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   marketShutdown(
     params: MarketShutdownParamsStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   multicall(
     _data: BytesLike[],
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   oracle(
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<InitializeOracleParamsStructOutput>;
 
   partialRepay(
     params: PartialRepayParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   pause(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   paused(overrides?: CallOverrides): Promise<boolean>;
@@ -1828,114 +1828,114 @@ export interface Rheo extends BaseContract {
   renounceRole(
     role: BytesLike,
     callerConfirmation: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   repay(
     params: RepayParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   revokeRole(
     role: BytesLike,
     account: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   riskConfig(
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<InitializeRiskConfigParamsStructOutput>;
 
   selfLiquidate(
     params: SelfLiquidateParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   selfLiquidateOnBehalfOf(
     externalParams: SelfLiquidateOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   sellCreditLimit(
     params: SellCreditLimitParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   sellCreditLimitOnBehalfOf(
     externalParams: SellCreditLimitOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   sellCreditMarket(
     params: SellCreditMarketParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   sellCreditMarketOnBehalfOf(
     externalParams: SellCreditMarketOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setCopyLimitOrderConfigs(
     params: SetCopyLimitOrderConfigsParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setCopyLimitOrderConfigsOnBehalfOf(
     externalParams: SetCopyLimitOrderConfigsOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setUserConfiguration(
     params: SetUserConfigurationParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setUserConfigurationOnBehalfOf(
     externalParams: SetUserConfigurationOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setVault(
     params: SetVaultParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setVaultOnBehalfOf(
     externalParams: SetVaultOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   supportsInterface(
     interfaceId: BytesLike,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   unpause(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   updateConfig(
     params: UpdateConfigParamsStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   upgradeToAndCall(
     newImplementation: string,
     data: BytesLike,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   version(overrides?: CallOverrides): Promise<string>;
 
   withdraw(
     params: WithdrawParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   withdrawOnBehalfOf(
     externalParams: WithdrawOnBehalfOfParamsStruct,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -1945,62 +1945,62 @@ export interface Rheo extends BaseContract {
 
     buyCreditLimit(
       params: BuyCreditLimitParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     buyCreditLimitOnBehalfOf(
       externalParams: BuyCreditLimitOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     buyCreditMarket(
       params: BuyCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     buyCreditMarketOnBehalfOf(
       externalParams: BuyCreditMarketOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     claim(params: ClaimParamsStruct, overrides?: CallOverrides): Promise<void>;
 
     collateralRatio(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     compensate(
       params: CompensateParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     compensateOnBehalfOf(
       externalParams: CompensateOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     data(overrides?: CallOverrides): Promise<DataViewStructOutput>;
 
     debtTokenAmountToCollateralTokenAmount(
       amount: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     deposit(
       params: DepositParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     depositOnBehalfOf(
       params: DepositOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     extSload(key: BytesLike, overrides?: CallOverrides): Promise<string>;
 
     feeConfig(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<InitializeFeeConfigParamsStructOutput>;
 
     getBorrowOfferAPR(
@@ -2008,22 +2008,22 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getBuyCreditMarketSwapData(
       params: BuyCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BuyCreditMarket.SwapDataBuyCreditMarketStructOutput>;
 
     getCreditPosition(
       creditPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<CreditPositionStructOutput>;
 
     getDebtPosition(
       debtPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<DebtPositionStructOutput>;
 
     getLoanOfferAPR(
@@ -2031,25 +2031,25 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
 
     getSellCreditMarketSwapData(
       params: SellCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<SellCreditMarket.SwapDataSellCreditMarketStructOutput>;
 
     getUserDefinedBorrowOfferAPR(
       borrower: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedCopyLimitOrderConfigs(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [CopyLimitOrderConfigStructOutput, CopyLimitOrderConfigStructOutput]
     >;
@@ -2057,24 +2057,24 @@ export interface Rheo extends BaseContract {
     getUserDefinedLoanOfferAPR(
       lender: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserView(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<UserViewStructOutput>;
 
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     initialize(
@@ -2083,12 +2083,12 @@ export interface Rheo extends BaseContract {
       r: InitializeRiskConfigParamsStruct,
       o: InitializeOracleParamsStruct,
       d: InitializeDataParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     isUserDefinedLimitOrdersNull(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [boolean, boolean] & {
         isLoanOfferNull: boolean;
@@ -2098,23 +2098,23 @@ export interface Rheo extends BaseContract {
 
     liquidate(
       params: LiquidateParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     marketShutdown(
       params: MarketShutdownParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     multicall(_data: BytesLike[], overrides?: CallOverrides): Promise<string[]>;
 
     oracle(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<InitializeOracleParamsStructOutput>;
 
     partialRepay(
       params: PartialRepayParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     pause(overrides?: CallOverrides): Promise<void>;
@@ -2126,7 +2126,7 @@ export interface Rheo extends BaseContract {
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     repay(params: RepayParamsStruct, overrides?: CallOverrides): Promise<void>;
@@ -2134,101 +2134,101 @@ export interface Rheo extends BaseContract {
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     riskConfig(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<InitializeRiskConfigParamsStructOutput>;
 
     selfLiquidate(
       params: SelfLiquidateParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     selfLiquidateOnBehalfOf(
       externalParams: SelfLiquidateOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     sellCreditLimit(
       params: SellCreditLimitParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     sellCreditLimitOnBehalfOf(
       externalParams: SellCreditLimitOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     sellCreditMarket(
       params: SellCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     sellCreditMarketOnBehalfOf(
       externalParams: SellCreditMarketOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setCopyLimitOrderConfigs(
       params: SetCopyLimitOrderConfigsParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setCopyLimitOrderConfigsOnBehalfOf(
       externalParams: SetCopyLimitOrderConfigsOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setUserConfiguration(
       params: SetUserConfigurationParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setUserConfigurationOnBehalfOf(
       externalParams: SetUserConfigurationOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setVault(
       params: SetVaultParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setVaultOnBehalfOf(
       externalParams: SetVaultOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     unpause(overrides?: CallOverrides): Promise<void>;
 
     updateConfig(
       params: UpdateConfigParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     version(overrides?: CallOverrides): Promise<string>;
 
     withdraw(
       params: WithdrawParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     withdrawOnBehalfOf(
       externalParams: WithdrawOnBehalfOfParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
   };
 
@@ -2242,34 +2242,34 @@ export interface Rheo extends BaseContract {
     "RoleAdminChanged(bytes32,bytes32,bytes32)"(
       role?: BytesLike | null,
       previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      newAdminRole?: BytesLike | null,
     ): RoleAdminChangedEventFilter;
     RoleAdminChanged(
       role?: BytesLike | null,
       previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      newAdminRole?: BytesLike | null,
     ): RoleAdminChangedEventFilter;
 
     "RoleGranted(bytes32,address,address)"(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleGrantedEventFilter;
     RoleGranted(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleGrantedEventFilter;
 
     "RoleRevoked(bytes32,address,address)"(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleRevokedEventFilter;
     RoleRevoked(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleRevokedEventFilter;
 
     "Unpaused(address)"(account?: null): UnpausedEventFilter;
@@ -2286,59 +2286,59 @@ export interface Rheo extends BaseContract {
 
     buyCreditLimit(
       params: BuyCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     buyCreditLimitOnBehalfOf(
       externalParams: BuyCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     buyCreditMarket(
       params: BuyCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     buyCreditMarketOnBehalfOf(
       externalParams: BuyCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     claim(
       params: ClaimParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     collateralRatio(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     compensate(
       params: CompensateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     compensateOnBehalfOf(
       externalParams: CompensateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     data(overrides?: CallOverrides): Promise<BigNumber>;
 
     debtTokenAmountToCollateralTokenAmount(
       amount: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     deposit(
       params: DepositParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     depositOnBehalfOf(
       params: DepositOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     extSload(key: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
@@ -2350,22 +2350,22 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getBuyCreditMarketSwapData(
       params: BuyCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getCreditPosition(
       creditPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getDebtPosition(
       debtPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLoanOfferAPR(
@@ -2373,34 +2373,34 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getRoleAdmin(
       role: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getSellCreditMarketSwapData(
       params: SellCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedBorrowOfferAPR(
       borrower: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedCopyLimitOrderConfigs(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedLoanOfferAPR(
       lender: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserView(user: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -2408,13 +2408,13 @@ export interface Rheo extends BaseContract {
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     initialize(
@@ -2423,34 +2423,34 @@ export interface Rheo extends BaseContract {
       r: InitializeRiskConfigParamsStruct,
       o: InitializeOracleParamsStruct,
       d: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     isUserDefinedLimitOrdersNull(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     liquidate(
       params: LiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     marketShutdown(
       params: MarketShutdownParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     multicall(
       _data: BytesLike[],
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     oracle(overrides?: CallOverrides): Promise<BigNumber>;
 
     partialRepay(
       params: PartialRepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     pause(overrides?: Overrides & { from?: string }): Promise<BigNumber>;
@@ -2462,182 +2462,182 @@ export interface Rheo extends BaseContract {
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     repay(
       params: RepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     riskConfig(overrides?: CallOverrides): Promise<BigNumber>;
 
     selfLiquidate(
       params: SelfLiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     selfLiquidateOnBehalfOf(
       externalParams: SelfLiquidateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     sellCreditLimit(
       params: SellCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     sellCreditLimitOnBehalfOf(
       externalParams: SellCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     sellCreditMarket(
       params: SellCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     sellCreditMarketOnBehalfOf(
       externalParams: SellCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setCopyLimitOrderConfigs(
       params: SetCopyLimitOrderConfigsParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setCopyLimitOrderConfigsOnBehalfOf(
       externalParams: SetCopyLimitOrderConfigsOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setUserConfiguration(
       params: SetUserConfigurationParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setUserConfigurationOnBehalfOf(
       externalParams: SetUserConfigurationOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setVault(
       params: SetVaultParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     setVaultOnBehalfOf(
       externalParams: SetVaultOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     unpause(overrides?: Overrides & { from?: string }): Promise<BigNumber>;
 
     updateConfig(
       params: UpdateConfigParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     version(overrides?: CallOverrides): Promise<BigNumber>;
 
     withdraw(
       params: WithdrawParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     withdrawOnBehalfOf(
       externalParams: WithdrawOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     DEFAULT_ADMIN_ROLE(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     UPGRADE_INTERFACE_VERSION(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     buyCreditLimit(
       params: BuyCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     buyCreditLimitOnBehalfOf(
       externalParams: BuyCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     buyCreditMarket(
       params: BuyCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     buyCreditMarketOnBehalfOf(
       externalParams: BuyCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     claim(
       params: ClaimParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     collateralRatio(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     compensate(
       params: CompensateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     compensateOnBehalfOf(
       externalParams: CompensateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     data(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     debtTokenAmountToCollateralTokenAmount(
       amount: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     deposit(
       params: DepositParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     depositOnBehalfOf(
       params: DepositOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     extSload(
       key: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     feeConfig(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -2647,22 +2647,22 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getBuyCreditMarketSwapData(
       params: BuyCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getCreditPosition(
       creditPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getDebtPosition(
       debtPositionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getLoanOfferAPR(
@@ -2670,51 +2670,51 @@ export interface Rheo extends BaseContract {
       collectionId: BigNumberish,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getRoleAdmin(
       role: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getSellCreditMarketSwapData(
       params: SellCreditMarketParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserDefinedBorrowOfferAPR(
       borrower: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserDefinedCopyLimitOrderConfigs(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserDefinedLoanOfferAPR(
       lender: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserView(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     initialize(
@@ -2723,38 +2723,38 @@ export interface Rheo extends BaseContract {
       r: InitializeRiskConfigParamsStruct,
       o: InitializeOracleParamsStruct,
       d: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     isUserDefinedLimitOrdersNull(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     liquidate(
       params: LiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     marketShutdown(
       params: MarketShutdownParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     multicall(
       _data: BytesLike[],
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     oracle(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     partialRepay(
       params: PartialRepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     pause(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     paused(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -2764,112 +2764,112 @@ export interface Rheo extends BaseContract {
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     repay(
       params: RepayParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     riskConfig(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     selfLiquidate(
       params: SelfLiquidateParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     selfLiquidateOnBehalfOf(
       externalParams: SelfLiquidateOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     sellCreditLimit(
       params: SellCreditLimitParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     sellCreditLimitOnBehalfOf(
       externalParams: SellCreditLimitOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     sellCreditMarket(
       params: SellCreditMarketParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     sellCreditMarketOnBehalfOf(
       externalParams: SellCreditMarketOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setCopyLimitOrderConfigs(
       params: SetCopyLimitOrderConfigsParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setCopyLimitOrderConfigsOnBehalfOf(
       externalParams: SetCopyLimitOrderConfigsOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setUserConfiguration(
       params: SetUserConfigurationParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setUserConfigurationOnBehalfOf(
       externalParams: SetUserConfigurationOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setVault(
       params: SetVaultParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setVaultOnBehalfOf(
       externalParams: SetVaultOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     unpause(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     updateConfig(
       params: UpdateConfigParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     version(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     withdraw(
       params: WithdrawParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     withdrawOnBehalfOf(
       externalParams: WithdrawOnBehalfOfParamsStruct,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
   };
 }

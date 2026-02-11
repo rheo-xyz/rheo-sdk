@@ -68,17 +68,17 @@ export type MarketActionsByVersion<T extends Version> = T extends "v1.8"
   ? MarketActionsV1_8
   : T extends "v1.9"
     ? MarketActionsV1_9
-  : MarketActionsV1_7;
+    : MarketActionsV1_7;
 export type FactoryActionsByVersion<T extends Version> = T extends "v1.8"
   ? FactoryActionsV1_8
   : T extends "v1.9"
     ? FactoryActionsV1_9
-  : FactoryActionsV1_7;
+    : FactoryActionsV1_7;
 export type TxBuilderByVersion<T extends Version> = T extends "v1.8"
   ? TxBuilderV1_8
   : T extends "v1.9"
     ? TxBuilderV1_9
-  : TxBuilderV1_7;
+    : TxBuilderV1_7;
 
 export type OperationV1_8 =
   | MarketOperationV1_8

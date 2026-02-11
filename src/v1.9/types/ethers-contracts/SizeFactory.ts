@@ -42,7 +42,7 @@ export type InitializeFeeConfigParamsStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  string
+  string,
 ] & {
   swapFeeAPR: BigNumber;
   fragmentationFee: BigNumber;
@@ -67,7 +67,7 @@ export type InitializeRiskConfigParamsStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  BigNumber[]
+  BigNumber[],
 ] & {
   crOpening: BigNumber;
   crLiquidation: BigNumber;
@@ -98,7 +98,7 @@ export type InitializeDataParamsStructOutput = [
   string,
   string,
   string,
-  string
+  string,
 ] & {
   weth: string;
   underlyingCollateralToken: string;
@@ -131,7 +131,7 @@ export type PriceFeedParamsStructOutput = [
   string,
   BigNumber,
   BigNumber,
-  string
+  string,
 ] & {
   uniswapV3Pool: string;
   twapWindow: number;
@@ -158,7 +158,7 @@ export type CopyLimitOrderConfigStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   minTenor: BigNumber;
   maxTenor: BigNumber;
@@ -262,36 +262,36 @@ export interface SizeFactoryInterface extends utils.Interface {
       | "unsubscribeFromCollections"
       | "unsubscribeFromCollectionsOnBehalfOf"
       | "upgradeToAndCall"
-      | "version"
+      | "version",
   ): FunctionFragment;
 
   encodeFunctionData(
     functionFragment: "DEFAULT_ADMIN_ROLE",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "authorizationNonces",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "authorizations",
-    values: [BigNumberish, string, string]
+    values: [BigNumberish, string, string],
   ): string;
   encodeFunctionData(
     functionFragment: "callMarket",
-    values: [string, BytesLike]
+    values: [string, BytesLike],
   ): string;
   encodeFunctionData(
     functionFragment: "collectionsManager",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "createBorrowTokenVault",
-    values: [string, string]
+    values: [string, string],
   ): string;
   encodeFunctionData(
     functionFragment: "createMarket",
@@ -299,118 +299,118 @@ export interface SizeFactoryInterface extends utils.Interface {
       InitializeFeeConfigParamsStruct,
       InitializeRiskConfigParamsStruct,
       InitializeOracleParamsStruct,
-      InitializeDataParamsStruct
-    ]
+      InitializeDataParamsStruct,
+    ],
   ): string;
   encodeFunctionData(
     functionFragment: "createPriceFeed",
-    values: [PriceFeedParamsStruct]
+    values: [PriceFeedParamsStruct],
   ): string;
   encodeFunctionData(
     functionFragment: "getBorrowOfferAPR",
-    values: [string, BigNumberish, string, string, BigNumberish]
+    values: [string, BigNumberish, string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getLoanOfferAPR",
-    values: [string, BigNumberish, string, string, BigNumberish]
+    values: [string, BigNumberish, string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getMarket",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getMarketDescriptions",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "getMarkets",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "getMarketsCount",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "getRoleAdmin",
-    values: [BytesLike]
+    values: [BytesLike],
   ): string;
   encodeFunctionData(
     functionFragment: "grantRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "hasRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(functionFragment: "initialize", values: [string]): string;
   encodeFunctionData(
     functionFragment: "isAuthorized",
-    values: [string, string, BigNumberish]
+    values: [string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isAuthorizedAll",
-    values: [string, string, BigNumberish]
+    values: [string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isBorrowAPRLowerThanLoanOfferAPRs",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isLoanAPRGreaterThanBorrowOfferAPRs",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "isMarket", values: [string]): string;
   encodeFunctionData(
     functionFragment: "multicall",
-    values: [BytesLike[]]
+    values: [BytesLike[]],
   ): string;
   encodeFunctionData(
     functionFragment: "nonTransferrableTokenVaultImplementation",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "proxiableUUID",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "removeMarket",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "renounceRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "revokeAllAuthorizations",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "revokeRole",
-    values: [BytesLike, string]
+    values: [BytesLike, string],
   ): string;
   encodeFunctionData(
     functionFragment: "setAuthorization",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "setCollectionsManager",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "setNonTransferrableRebasingTokenVaultImplementation",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "setSizeImplementation",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "setUserCollectionCopyLimitOrderConfigs",
     values: [
       BigNumberish,
       CopyLimitOrderConfigStruct,
-      CopyLimitOrderConfigStruct
-    ]
+      CopyLimitOrderConfigStruct,
+    ],
   ): string;
   encodeFunctionData(
     functionFragment: "setUserCollectionCopyLimitOrderConfigsOnBehalfOf",
@@ -418,187 +418,187 @@ export interface SizeFactoryInterface extends utils.Interface {
       BigNumberish,
       CopyLimitOrderConfigStruct,
       CopyLimitOrderConfigStruct,
-      string
-    ]
+      string,
+    ],
   ): string;
   encodeFunctionData(
     functionFragment: "sizeImplementation",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "subscribeToCollections",
-    values: [BigNumberish[]]
+    values: [BigNumberish[]],
   ): string;
   encodeFunctionData(
     functionFragment: "subscribeToCollectionsOnBehalfOf",
-    values: [BigNumberish[], string]
+    values: [BigNumberish[], string],
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
-    values: [BytesLike]
+    values: [BytesLike],
   ): string;
   encodeFunctionData(
     functionFragment: "unsubscribeFromCollections",
-    values: [BigNumberish[]]
+    values: [BigNumberish[]],
   ): string;
   encodeFunctionData(
     functionFragment: "unsubscribeFromCollectionsOnBehalfOf",
-    values: [BigNumberish[], string]
+    values: [BigNumberish[], string],
   ): string;
   encodeFunctionData(
     functionFragment: "upgradeToAndCall",
-    values: [string, BytesLike]
+    values: [string, BytesLike],
   ): string;
   encodeFunctionData(functionFragment: "version", values?: undefined): string;
 
   decodeFunctionResult(
     functionFragment: "DEFAULT_ADMIN_ROLE",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "authorizationNonces",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "authorizations",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "callMarket", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "collectionsManager",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "createBorrowTokenVault",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "createMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "createPriceFeed",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getBorrowOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getLoanOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "getMarket", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getMarketDescriptions",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "getMarkets", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getMarketsCount",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getRoleAdmin",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isAuthorized",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isAuthorizedAll",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isBorrowAPRLowerThanLoanOfferAPRs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isLoanAPRGreaterThanBorrowOfferAPRs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "isMarket", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "multicall", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "nonTransferrableTokenVaultImplementation",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "proxiableUUID",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "removeMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "renounceRole",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "revokeAllAuthorizations",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "setAuthorization",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setCollectionsManager",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setNonTransferrableRebasingTokenVaultImplementation",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setSizeImplementation",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setUserCollectionCopyLimitOrderConfigs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setUserCollectionCopyLimitOrderConfigsOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "sizeImplementation",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "subscribeToCollections",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "subscribeToCollectionsOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "unsubscribeFromCollections",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "unsubscribeFromCollectionsOnBehalfOf",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "upgradeToAndCall",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "version", data: BytesLike): Result;
 
@@ -625,7 +625,7 @@ export interface SizeFactoryInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "CreatePriceFeed"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
   getEvent(
-    nameOrSignatureOrTopic: "NonTransferrableRebasingTokenVaultImplementationSet"
+    nameOrSignatureOrTopic: "NonTransferrableRebasingTokenVaultImplementationSet",
   ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RemoveMarket"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RevokeAllAuthorizations"): EventFragment;
@@ -795,15 +795,15 @@ export interface SizeFactory extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
+    eventFilter?: TypedEventFilter<TEvent>,
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
   removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
+    eventFilter: TypedEventFilter<TEvent>,
   ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
@@ -818,20 +818,20 @@ export interface SizeFactory extends BaseContract {
 
     authorizationNonces(
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber] & { nonce: BigNumber }>;
 
     authorizations(
       nonce: BigNumberish,
       operator: string,
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber] & { authorizedActionsBitmap: BigNumber }>;
 
     callMarket(
       market: string,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     collectionsManager(overrides?: CallOverrides): Promise<[string]>;
@@ -839,7 +839,7 @@ export interface SizeFactory extends BaseContract {
     createBorrowTokenVault(
       variablePool: string,
       underlyingBorrowToken: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     createMarket(
@@ -847,12 +847,12 @@ export interface SizeFactory extends BaseContract {
       riskConfigParams: InitializeRiskConfigParamsStruct,
       oracleParams: InitializeOracleParamsStruct,
       dataParams: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     createPriceFeed(
       _priceFeedParams: PriceFeedParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     getBorrowOfferAPR(
@@ -861,7 +861,7 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getLoanOfferAPR(
@@ -870,20 +870,20 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     getMarket(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string]>;
 
     getMarketDescriptions(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string[]] & { descriptions: string[] }>;
 
     getMarkets(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string[]] & { _markets: string[] }>;
 
     getMarketsCount(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -893,32 +893,32 @@ export interface SizeFactory extends BaseContract {
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     initialize(
       _owner: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     isAuthorized(
       operator: string,
       onBehalfOf: string,
       action: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isAuthorizedAll(
       operator: string,
       onBehalfOf: string,
       actionsBitmap: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -926,7 +926,7 @@ export interface SizeFactory extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -934,69 +934,69 @@ export interface SizeFactory extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isMarket(candidate: string, overrides?: CallOverrides): Promise<[boolean]>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     nonTransferrableTokenVaultImplementation(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string]>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<[string]>;
 
     removeMarket(
       market: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     revokeAllAuthorizations(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setAuthorization(
       operator: string,
       actionsBitmap: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setCollectionsManager(
       _collectionsManager: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setNonTransferrableRebasingTokenVaultImplementation(
       _nonTransferrableTokenVaultImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setSizeImplementation(
       _sizeImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setUserCollectionCopyLimitOrderConfigs(
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setUserCollectionCopyLimitOrderConfigsOnBehalfOf(
@@ -1004,42 +1004,42 @@ export interface SizeFactory extends BaseContract {
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     sizeImplementation(overrides?: CallOverrides): Promise<[string]>;
 
     subscribeToCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     subscribeToCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     unsubscribeFromCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     unsubscribeFromCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     version(overrides?: CallOverrides): Promise<[string]>;
@@ -1051,20 +1051,20 @@ export interface SizeFactory extends BaseContract {
 
   authorizationNonces(
     onBehalfOf: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   authorizations(
     nonce: BigNumberish,
     operator: string,
     onBehalfOf: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   callMarket(
     market: string,
     data: BytesLike,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   collectionsManager(overrides?: CallOverrides): Promise<string>;
@@ -1072,7 +1072,7 @@ export interface SizeFactory extends BaseContract {
   createBorrowTokenVault(
     variablePool: string,
     underlyingBorrowToken: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   createMarket(
@@ -1080,12 +1080,12 @@ export interface SizeFactory extends BaseContract {
     riskConfigParams: InitializeRiskConfigParamsStruct,
     oracleParams: InitializeOracleParamsStruct,
     dataParams: InitializeDataParamsStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   createPriceFeed(
     _priceFeedParams: PriceFeedParamsStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   getBorrowOfferAPR(
@@ -1094,7 +1094,7 @@ export interface SizeFactory extends BaseContract {
     market: string,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getLoanOfferAPR(
@@ -1103,7 +1103,7 @@ export interface SizeFactory extends BaseContract {
     market: string,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getMarket(index: BigNumberish, overrides?: CallOverrides): Promise<string>;
@@ -1119,32 +1119,32 @@ export interface SizeFactory extends BaseContract {
   grantRole(
     role: BytesLike,
     account: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   hasRole(
     role: BytesLike,
     account: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   initialize(
     _owner: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   isAuthorized(
     operator: string,
     onBehalfOf: string,
     action: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isAuthorizedAll(
     operator: string,
     onBehalfOf: string,
     actionsBitmap: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1152,7 +1152,7 @@ export interface SizeFactory extends BaseContract {
     borrowAPR: BigNumberish,
     market: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1160,69 +1160,69 @@ export interface SizeFactory extends BaseContract {
     loanAPR: BigNumberish,
     market: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isMarket(candidate: string, overrides?: CallOverrides): Promise<boolean>;
 
   multicall(
     data: BytesLike[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   nonTransferrableTokenVaultImplementation(
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<string>;
 
   proxiableUUID(overrides?: CallOverrides): Promise<string>;
 
   removeMarket(
     market: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   renounceRole(
     role: BytesLike,
     callerConfirmation: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   revokeAllAuthorizations(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   revokeRole(
     role: BytesLike,
     account: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setAuthorization(
     operator: string,
     actionsBitmap: BigNumberish,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setCollectionsManager(
     _collectionsManager: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setNonTransferrableRebasingTokenVaultImplementation(
     _nonTransferrableTokenVaultImplementation: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setSizeImplementation(
     _sizeImplementation: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setUserCollectionCopyLimitOrderConfigs(
     collectionId: BigNumberish,
     copyLoanOfferConfig: CopyLimitOrderConfigStruct,
     copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setUserCollectionCopyLimitOrderConfigsOnBehalfOf(
@@ -1230,42 +1230,42 @@ export interface SizeFactory extends BaseContract {
     copyLoanOfferConfig: CopyLimitOrderConfigStruct,
     copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
     onBehalfOf: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   sizeImplementation(overrides?: CallOverrides): Promise<string>;
 
   subscribeToCollections(
     collectionIds: BigNumberish[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   subscribeToCollectionsOnBehalfOf(
     collectionIds: BigNumberish[],
     onBehalfOf: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   supportsInterface(
     interfaceId: BytesLike,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   unsubscribeFromCollections(
     collectionIds: BigNumberish[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   unsubscribeFromCollectionsOnBehalfOf(
     collectionIds: BigNumberish[],
     onBehalfOf: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   upgradeToAndCall(
     newImplementation: string,
     data: BytesLike,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   version(overrides?: CallOverrides): Promise<string>;
@@ -1277,20 +1277,20 @@ export interface SizeFactory extends BaseContract {
 
     authorizationNonces(
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     authorizations(
       nonce: BigNumberish,
       operator: string,
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     callMarket(
       market: string,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     collectionsManager(overrides?: CallOverrides): Promise<string>;
@@ -1298,7 +1298,7 @@ export interface SizeFactory extends BaseContract {
     createBorrowTokenVault(
       variablePool: string,
       underlyingBorrowToken: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     createMarket(
@@ -1306,12 +1306,12 @@ export interface SizeFactory extends BaseContract {
       riskConfigParams: InitializeRiskConfigParamsStruct,
       oracleParams: InitializeOracleParamsStruct,
       dataParams: InitializeDataParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     createPriceFeed(
       _priceFeedParams: PriceFeedParamsStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     getBorrowOfferAPR(
@@ -1320,7 +1320,7 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLoanOfferAPR(
@@ -1329,7 +1329,7 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getMarket(index: BigNumberish, overrides?: CallOverrides): Promise<string>;
@@ -1345,13 +1345,13 @@ export interface SizeFactory extends BaseContract {
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     initialize(_owner: string, overrides?: CallOverrides): Promise<void>;
@@ -1360,14 +1360,14 @@ export interface SizeFactory extends BaseContract {
       operator: string,
       onBehalfOf: string,
       action: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isAuthorizedAll(
       operator: string,
       onBehalfOf: string,
       actionsBitmap: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1375,7 +1375,7 @@ export interface SizeFactory extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1383,7 +1383,7 @@ export interface SizeFactory extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isMarket(candidate: string, overrides?: CallOverrides): Promise<boolean>;
@@ -1391,7 +1391,7 @@ export interface SizeFactory extends BaseContract {
     multicall(data: BytesLike[], overrides?: CallOverrides): Promise<string[]>;
 
     nonTransferrableTokenVaultImplementation(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<string>;
@@ -1401,7 +1401,7 @@ export interface SizeFactory extends BaseContract {
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     revokeAllAuthorizations(overrides?: CallOverrides): Promise<void>;
@@ -1409,35 +1409,35 @@ export interface SizeFactory extends BaseContract {
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setAuthorization(
       operator: string,
       actionsBitmap: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setCollectionsManager(
       _collectionsManager: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setNonTransferrableRebasingTokenVaultImplementation(
       _nonTransferrableTokenVaultImplementation: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setSizeImplementation(
       _sizeImplementation: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setUserCollectionCopyLimitOrderConfigs(
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setUserCollectionCopyLimitOrderConfigsOnBehalfOf(
@@ -1445,42 +1445,42 @@ export interface SizeFactory extends BaseContract {
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     sizeImplementation(overrides?: CallOverrides): Promise<string>;
 
     subscribeToCollections(
       collectionIds: BigNumberish[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     subscribeToCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     unsubscribeFromCollections(
       collectionIds: BigNumberish[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     unsubscribeFromCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     version(overrides?: CallOverrides): Promise<string>;
@@ -1489,25 +1489,25 @@ export interface SizeFactory extends BaseContract {
   filters: {
     "CollectionsManagerSet(address,address)"(
       oldCollectionsManager?: string | null,
-      newCollectionsManager?: string | null
+      newCollectionsManager?: string | null,
     ): CollectionsManagerSetEventFilter;
     CollectionsManagerSet(
       oldCollectionsManager?: string | null,
-      newCollectionsManager?: string | null
+      newCollectionsManager?: string | null,
     ): CollectionsManagerSetEventFilter;
 
     "CreateBorrowTokenVault(address)"(
-      borrowTokenVault?: string | null
+      borrowTokenVault?: string | null,
     ): CreateBorrowTokenVaultEventFilter;
     CreateBorrowTokenVault(
-      borrowTokenVault?: string | null
+      borrowTokenVault?: string | null,
     ): CreateBorrowTokenVaultEventFilter;
 
     "CreateMarket(address)"(market?: string | null): CreateMarketEventFilter;
     CreateMarket(market?: string | null): CreateMarketEventFilter;
 
     "CreatePriceFeed(address)"(
-      priceFeed?: string | null
+      priceFeed?: string | null,
     ): CreatePriceFeedEventFilter;
     CreatePriceFeed(priceFeed?: string | null): CreatePriceFeedEventFilter;
 
@@ -1516,76 +1516,76 @@ export interface SizeFactory extends BaseContract {
 
     "NonTransferrableRebasingTokenVaultImplementationSet(address,address)"(
       oldNonTransferrableRebasingTokenVaultImplementation?: string | null,
-      newNonTransferrableRebasingTokenVaultImplementation?: string | null
+      newNonTransferrableRebasingTokenVaultImplementation?: string | null,
     ): NonTransferrableRebasingTokenVaultImplementationSetEventFilter;
     NonTransferrableRebasingTokenVaultImplementationSet(
       oldNonTransferrableRebasingTokenVaultImplementation?: string | null,
-      newNonTransferrableRebasingTokenVaultImplementation?: string | null
+      newNonTransferrableRebasingTokenVaultImplementation?: string | null,
     ): NonTransferrableRebasingTokenVaultImplementationSetEventFilter;
 
     "RemoveMarket(address)"(market?: string | null): RemoveMarketEventFilter;
     RemoveMarket(market?: string | null): RemoveMarketEventFilter;
 
     "RevokeAllAuthorizations(address)"(
-      sender?: string | null
+      sender?: string | null,
     ): RevokeAllAuthorizationsEventFilter;
     RevokeAllAuthorizations(
-      sender?: string | null
+      sender?: string | null,
     ): RevokeAllAuthorizationsEventFilter;
 
     "RoleAdminChanged(bytes32,bytes32,bytes32)"(
       role?: BytesLike | null,
       previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      newAdminRole?: BytesLike | null,
     ): RoleAdminChangedEventFilter;
     RoleAdminChanged(
       role?: BytesLike | null,
       previousAdminRole?: BytesLike | null,
-      newAdminRole?: BytesLike | null
+      newAdminRole?: BytesLike | null,
     ): RoleAdminChangedEventFilter;
 
     "RoleGranted(bytes32,address,address)"(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleGrantedEventFilter;
     RoleGranted(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleGrantedEventFilter;
 
     "RoleRevoked(bytes32,address,address)"(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleRevokedEventFilter;
     RoleRevoked(
       role?: BytesLike | null,
       account?: string | null,
-      sender?: string | null
+      sender?: string | null,
     ): RoleRevokedEventFilter;
 
     "SetAuthorization(address,address,uint256,uint256)"(
       sender?: string | null,
       operator?: string | null,
       actionsBitmap?: BigNumberish | null,
-      nonce?: null
+      nonce?: null,
     ): SetAuthorizationEventFilter;
     SetAuthorization(
       sender?: string | null,
       operator?: string | null,
       actionsBitmap?: BigNumberish | null,
-      nonce?: null
+      nonce?: null,
     ): SetAuthorizationEventFilter;
 
     "SizeImplementationSet(address,address)"(
       oldSizeImplementation?: string | null,
-      newSizeImplementation?: string | null
+      newSizeImplementation?: string | null,
     ): SizeImplementationSetEventFilter;
     SizeImplementationSet(
       oldSizeImplementation?: string | null,
-      newSizeImplementation?: string | null
+      newSizeImplementation?: string | null,
     ): SizeImplementationSetEventFilter;
 
     "Upgraded(address)"(implementation?: string | null): UpgradedEventFilter;
@@ -1599,20 +1599,20 @@ export interface SizeFactory extends BaseContract {
 
     authorizationNonces(
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     authorizations(
       nonce: BigNumberish,
       operator: string,
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     callMarket(
       market: string,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     collectionsManager(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1620,7 +1620,7 @@ export interface SizeFactory extends BaseContract {
     createBorrowTokenVault(
       variablePool: string,
       underlyingBorrowToken: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     createMarket(
@@ -1628,12 +1628,12 @@ export interface SizeFactory extends BaseContract {
       riskConfigParams: InitializeRiskConfigParamsStruct,
       oracleParams: InitializeOracleParamsStruct,
       dataParams: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     createPriceFeed(
       _priceFeedParams: PriceFeedParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     getBorrowOfferAPR(
@@ -1642,7 +1642,7 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLoanOfferAPR(
@@ -1651,12 +1651,12 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getMarket(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getMarketDescriptions(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1667,38 +1667,38 @@ export interface SizeFactory extends BaseContract {
 
     getRoleAdmin(
       role: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     initialize(
       _owner: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     isAuthorized(
       operator: string,
       onBehalfOf: string,
       action: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isAuthorizedAll(
       operator: string,
       onBehalfOf: string,
       actionsBitmap: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1706,7 +1706,7 @@ export interface SizeFactory extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1714,69 +1714,69 @@ export interface SizeFactory extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isMarket(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     nonTransferrableTokenVaultImplementation(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<BigNumber>;
 
     removeMarket(
       market: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     revokeAllAuthorizations(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setAuthorization(
       operator: string,
       actionsBitmap: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setCollectionsManager(
       _collectionsManager: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setNonTransferrableRebasingTokenVaultImplementation(
       _nonTransferrableTokenVaultImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setSizeImplementation(
       _sizeImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setUserCollectionCopyLimitOrderConfigs(
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setUserCollectionCopyLimitOrderConfigsOnBehalfOf(
@@ -1784,42 +1784,42 @@ export interface SizeFactory extends BaseContract {
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     sizeImplementation(overrides?: CallOverrides): Promise<BigNumber>;
 
     subscribeToCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     subscribeToCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     unsubscribeFromCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     unsubscribeFromCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
 
     version(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1827,39 +1827,39 @@ export interface SizeFactory extends BaseContract {
 
   populateTransaction: {
     DEFAULT_ADMIN_ROLE(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     UPGRADE_INTERFACE_VERSION(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     authorizationNonces(
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     authorizations(
       nonce: BigNumberish,
       operator: string,
       onBehalfOf: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     callMarket(
       market: string,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     collectionsManager(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     createBorrowTokenVault(
       variablePool: string,
       underlyingBorrowToken: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     createMarket(
@@ -1867,12 +1867,12 @@ export interface SizeFactory extends BaseContract {
       riskConfigParams: InitializeRiskConfigParamsStruct,
       oracleParams: InitializeOracleParamsStruct,
       dataParams: InitializeDataParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     createPriceFeed(
       _priceFeedParams: PriceFeedParamsStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     getBorrowOfferAPR(
@@ -1881,7 +1881,7 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getLoanOfferAPR(
@@ -1890,16 +1890,16 @@ export interface SizeFactory extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getMarket(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getMarketDescriptions(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getMarkets(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1908,38 +1908,38 @@ export interface SizeFactory extends BaseContract {
 
     getRoleAdmin(
       role: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     grantRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     hasRole(
       role: BytesLike,
       account: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     initialize(
       _owner: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     isAuthorized(
       operator: string,
       onBehalfOf: string,
       action: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isAuthorizedAll(
       operator: string,
       onBehalfOf: string,
       actionsBitmap: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1947,7 +1947,7 @@ export interface SizeFactory extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1955,72 +1955,72 @@ export interface SizeFactory extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isMarket(
       candidate: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     nonTransferrableTokenVaultImplementation(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeMarket(
       market: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     renounceRole(
       role: BytesLike,
       callerConfirmation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     revokeAllAuthorizations(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     revokeRole(
       role: BytesLike,
       account: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setAuthorization(
       operator: string,
       actionsBitmap: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setCollectionsManager(
       _collectionsManager: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setNonTransferrableRebasingTokenVaultImplementation(
       _nonTransferrableTokenVaultImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setSizeImplementation(
       _sizeImplementation: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setUserCollectionCopyLimitOrderConfigs(
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setUserCollectionCopyLimitOrderConfigsOnBehalfOf(
@@ -2028,44 +2028,44 @@ export interface SizeFactory extends BaseContract {
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     sizeImplementation(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     subscribeToCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     subscribeToCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     unsubscribeFromCollections(
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     unsubscribeFromCollectionsOnBehalfOf(
       collectionIds: BigNumberish[],
       onBehalfOf: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     version(overrides?: CallOverrides): Promise<PopulatedTransaction>;

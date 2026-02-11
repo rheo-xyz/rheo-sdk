@@ -40,7 +40,7 @@ export type CopyLimitOrderConfigStructOutput = [
   BigNumber,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
 ] & {
   minTenor: BigNumber;
   maxTenor: BigNumber;
@@ -138,123 +138,123 @@ export interface CollectionsManagerInterface extends utils.Interface {
       | "totalSupply"
       | "transferFrom"
       | "unsubscribeUserFromCollections"
-      | "upgradeToAndCall"
+      | "upgradeToAndCall",
   ): FunctionFragment;
 
   encodeFunctionData(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "addMarketsToCollection",
-    values: [BigNumberish, string[]]
+    values: [BigNumberish, string[]],
   ): string;
   encodeFunctionData(
     functionFragment: "addRateProvidersToCollectionMarket",
-    values: [BigNumberish, string, string[]]
+    values: [BigNumberish, string, string[]],
   ): string;
   encodeFunctionData(
     functionFragment: "approve",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
     functionFragment: "collectionContainsMarket",
-    values: [BigNumberish, string]
+    values: [BigNumberish, string],
   ): string;
   encodeFunctionData(
     functionFragment: "createCollection",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "getApproved",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getBorrowOfferAPR",
-    values: [string, BigNumberish, string, string, BigNumberish]
+    values: [string, BigNumberish, string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getCollectionMarketRateProviders",
-    values: [BigNumberish, string]
+    values: [BigNumberish, string],
   ): string;
   encodeFunctionData(
     functionFragment: "getLimitOrderAPR",
-    values: [string, BigNumberish, string, string, BigNumberish, boolean]
+    values: [string, BigNumberish, string, string, BigNumberish, boolean],
   ): string;
   encodeFunctionData(
     functionFragment: "getLoanOfferAPR",
-    values: [string, BigNumberish, string, string, BigNumberish]
+    values: [string, BigNumberish, string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getSubscribedCollections",
-    values: [string]
+    values: [string],
   ): string;
   encodeFunctionData(
     functionFragment: "getUserDefinedCollectionCopyBorrowOfferConfig",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "getUserDefinedCollectionCopyLoanOfferConfig",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(functionFragment: "initialize", values: [string]): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
-    values: [string, string]
+    values: [string, string],
   ): string;
   encodeFunctionData(
     functionFragment: "isBorrowAPRLowerThanLoanOfferAPRs",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isCopyingCollectionMarketRateProvider",
-    values: [string, BigNumberish, string, string]
+    values: [string, BigNumberish, string, string],
   ): string;
   encodeFunctionData(
     functionFragment: "isLoanAPRGreaterThanBorrowOfferAPRs",
-    values: [string, BigNumberish, string, BigNumberish]
+    values: [string, BigNumberish, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isSubscribedToCollection",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "isValidCollectionId",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "multicall",
-    values: [BytesLike[]]
+    values: [BytesLike[]],
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "proxiableUUID",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "removeMarketsFromCollection",
-    values: [BigNumberish, string[]]
+    values: [BigNumberish, string[]],
   ): string;
   encodeFunctionData(
     functionFragment: "removeRateProvidersFromCollectionMarket",
-    values: [BigNumberish, string, string[]]
+    values: [BigNumberish, string, string[]],
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256)",
-    values: [string, string, BigNumberish]
+    values: [string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
-    values: [string, string, BigNumberish, BytesLike]
+    values: [string, string, BigNumberish, BytesLike],
   ): string;
   encodeFunctionData(
     functionFragment: "setApprovalForAll",
-    values: [string, boolean]
+    values: [string, boolean],
   ): string;
   encodeFunctionData(
     functionFragment: "setUserCollectionCopyLimitOrderConfigs",
@@ -262,190 +262,190 @@ export interface CollectionsManagerInterface extends utils.Interface {
       string,
       BigNumberish,
       CopyLimitOrderConfigStruct,
-      CopyLimitOrderConfigStruct
-    ]
+      CopyLimitOrderConfigStruct,
+    ],
   ): string;
   encodeFunctionData(
     functionFragment: "subscribeUserToCollections",
-    values: [string, BigNumberish[]]
+    values: [string, BigNumberish[]],
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
-    values: [BytesLike]
+    values: [BytesLike],
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "tokenByIndex",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "tokenOfOwnerByIndex",
-    values: [string, BigNumberish]
+    values: [string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "tokenURI",
-    values: [BigNumberish]
+    values: [BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "totalSupply",
-    values?: undefined
+    values?: undefined,
   ): string;
   encodeFunctionData(
     functionFragment: "transferFrom",
-    values: [string, string, BigNumberish]
+    values: [string, string, BigNumberish],
   ): string;
   encodeFunctionData(
     functionFragment: "unsubscribeUserFromCollections",
-    values: [string, BigNumberish[]]
+    values: [string, BigNumberish[]],
   ): string;
   encodeFunctionData(
     functionFragment: "upgradeToAndCall",
-    values: [string, BytesLike]
+    values: [string, BytesLike],
   ): string;
 
   decodeFunctionResult(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "addMarketsToCollection",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "addRateProvidersToCollectionMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "collectionContainsMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "createCollection",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getBorrowOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getCollectionMarketRateProviders",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getLimitOrderAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getLoanOfferAPR",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getSubscribedCollections",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserDefinedCollectionCopyBorrowOfferConfig",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUserDefinedCollectionCopyLoanOfferConfig",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isBorrowAPRLowerThanLoanOfferAPRs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isCopyingCollectionMarketRateProvider",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isLoanAPRGreaterThanBorrowOfferAPRs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isSubscribedToCollection",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "isValidCollectionId",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "multicall", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "proxiableUUID",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "removeMarketsFromCollection",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "removeRateProvidersFromCollectionMarket",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom(address,address,uint256)",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setApprovalForAll",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "setUserCollectionCopyLimitOrderConfigs",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "subscribeUserToCollections",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "tokenByIndex",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "tokenOfOwnerByIndex",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "totalSupply",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "unsubscribeUserFromCollections",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
   decodeFunctionResult(
     functionFragment: "upgradeToAndCall",
-    data: BytesLike
+    data: BytesLike,
   ): Result;
 
   events: {
@@ -468,14 +468,14 @@ export interface CollectionsManagerInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "MarketAddedToCollection"): EventFragment;
   getEvent(
-    nameOrSignatureOrTopic: "MarketRemovedFromCollection"
+    nameOrSignatureOrTopic: "MarketRemovedFromCollection",
   ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RateProviderAddedToMarket"): EventFragment;
   getEvent(
-    nameOrSignatureOrTopic: "RateProviderRemovedFromMarket"
+    nameOrSignatureOrTopic: "RateProviderRemovedFromMarket",
   ): EventFragment;
   getEvent(
-    nameOrSignatureOrTopic: "SetUserCollectionCopyLimitOrderConfigs"
+    nameOrSignatureOrTopic: "SetUserCollectionCopyLimitOrderConfigs",
   ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "SubscribedToCollection"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
@@ -575,7 +575,7 @@ export type SetUserCollectionCopyLimitOrderConfigsEvent = TypedEvent<
     string,
     BigNumber,
     CopyLimitOrderConfigStructOutput,
-    CopyLimitOrderConfigStructOutput
+    CopyLimitOrderConfigStructOutput,
   ],
   SetUserCollectionCopyLimitOrderConfigsEventObject
 >;
@@ -636,15 +636,15 @@ export interface CollectionsManager extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
+    eventFilter?: TypedEventFilter<TEvent>,
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
   removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
+    eventFilter: TypedEventFilter<TEvent>,
   ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
@@ -658,20 +658,20 @@ export interface CollectionsManager extends BaseContract {
     addMarketsToCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     addRateProvidersToCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -679,16 +679,16 @@ export interface CollectionsManager extends BaseContract {
     collectionContainsMarket(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     createCollection(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     getApproved(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string]>;
 
     getBorrowOfferAPR(
@@ -697,13 +697,13 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber] & { apr: BigNumber }>;
 
     getCollectionMarketRateProviders(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string[]]>;
 
     getLimitOrderAPR(
@@ -713,7 +713,7 @@ export interface CollectionsManager extends BaseContract {
       rateProvider: string,
       maturity: BigNumberish,
       isLoanOffer: boolean,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber] & { apr: BigNumber }>;
 
     getLoanOfferAPR(
@@ -722,35 +722,35 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber] & { apr: BigNumber }>;
 
     getSubscribedCollections(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber[]] & { collectionIds: BigNumber[] }>;
 
     getUserDefinedCollectionCopyBorrowOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[CopyLimitOrderConfigStructOutput]>;
 
     getUserDefinedCollectionCopyLoanOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[CopyLimitOrderConfigStructOutput]>;
 
     initialize(
       _sizeFactory: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -758,7 +758,7 @@ export interface CollectionsManager extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isCopyingCollectionMarketRateProvider(
@@ -766,7 +766,7 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       market: string,
       rateProvider: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -774,30 +774,30 @@ export interface CollectionsManager extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isSubscribedToCollection(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     isValidCollectionId(
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
     ownerOf(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string]>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<[string]>;
@@ -805,21 +805,21 @@ export interface CollectionsManager extends BaseContract {
     removeMarketsFromCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     removeRateProvidersFromCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
@@ -827,13 +827,13 @@ export interface CollectionsManager extends BaseContract {
       to: string,
       tokenId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     setUserCollectionCopyLimitOrderConfigs(
@@ -841,36 +841,36 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     subscribeUserToCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[boolean]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
     tokenByIndex(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     tokenOfOwnerByIndex(
       owner: string,
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[BigNumber]>;
 
     tokenURI(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<[string]>;
 
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -879,19 +879,19 @@ export interface CollectionsManager extends BaseContract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     unsubscribeUserFromCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<ContractTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<ContractTransaction>;
   };
 
@@ -900,20 +900,20 @@ export interface CollectionsManager extends BaseContract {
   addMarketsToCollection(
     collectionId: BigNumberish,
     markets: string[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   addRateProvidersToCollectionMarket(
     collectionId: BigNumberish,
     market: string,
     rateProviders: string[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   approve(
     to: string,
     tokenId: BigNumberish,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -921,16 +921,16 @@ export interface CollectionsManager extends BaseContract {
   collectionContainsMarket(
     collectionId: BigNumberish,
     market: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   createCollection(
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   getApproved(
     tokenId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<string>;
 
   getBorrowOfferAPR(
@@ -939,13 +939,13 @@ export interface CollectionsManager extends BaseContract {
     market: string,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getCollectionMarketRateProviders(
     collectionId: BigNumberish,
     market: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<string[]>;
 
   getLimitOrderAPR(
@@ -955,7 +955,7 @@ export interface CollectionsManager extends BaseContract {
     rateProvider: string,
     maturity: BigNumberish,
     isLoanOffer: boolean,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getLoanOfferAPR(
@@ -964,35 +964,35 @@ export interface CollectionsManager extends BaseContract {
     market: string,
     rateProvider: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   getSubscribedCollections(
     user: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber[]>;
 
   getUserDefinedCollectionCopyBorrowOfferConfig(
     user: string,
     collectionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<CopyLimitOrderConfigStructOutput>;
 
   getUserDefinedCollectionCopyLoanOfferConfig(
     user: string,
     collectionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<CopyLimitOrderConfigStructOutput>;
 
   initialize(
     _sizeFactory: string,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   isApprovedForAll(
     owner: string,
     operator: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1000,7 +1000,7 @@ export interface CollectionsManager extends BaseContract {
     borrowAPR: BigNumberish,
     market: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isCopyingCollectionMarketRateProvider(
@@ -1008,7 +1008,7 @@ export interface CollectionsManager extends BaseContract {
     collectionId: BigNumberish,
     market: string,
     rateProvider: string,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1016,23 +1016,23 @@ export interface CollectionsManager extends BaseContract {
     loanAPR: BigNumberish,
     market: string,
     maturity: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isSubscribedToCollection(
     user: string,
     collectionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   isValidCollectionId(
     collectionId: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   multicall(
     data: BytesLike[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   name(overrides?: CallOverrides): Promise<string>;
@@ -1044,21 +1044,21 @@ export interface CollectionsManager extends BaseContract {
   removeMarketsFromCollection(
     collectionId: BigNumberish,
     markets: string[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   removeRateProvidersFromCollectionMarket(
     collectionId: BigNumberish,
     market: string,
     rateProviders: string[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256)"(
     from: string,
     to: string,
     tokenId: BigNumberish,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256,bytes)"(
@@ -1066,13 +1066,13 @@ export interface CollectionsManager extends BaseContract {
     to: string,
     tokenId: BigNumberish,
     data: BytesLike,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setApprovalForAll(
     operator: string,
     approved: boolean,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   setUserCollectionCopyLimitOrderConfigs(
@@ -1080,31 +1080,31 @@ export interface CollectionsManager extends BaseContract {
     collectionId: BigNumberish,
     copyLoanOfferConfig: CopyLimitOrderConfigStruct,
     copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   subscribeUserToCollections(
     user: string,
     collectionIds: BigNumberish[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   supportsInterface(
     interfaceId: BytesLike,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<boolean>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
   tokenByIndex(
     index: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   tokenOfOwnerByIndex(
     owner: string,
     index: BigNumberish,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<BigNumber>;
 
   tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
@@ -1115,19 +1115,19 @@ export interface CollectionsManager extends BaseContract {
     from: string,
     to: string,
     tokenId: BigNumberish,
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   unsubscribeUserFromCollections(
     user: string,
     collectionIds: BigNumberish[],
-    overrides?: Overrides & { from?: string }
+    overrides?: Overrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   upgradeToAndCall(
     newImplementation: string,
     data: BytesLike,
-    overrides?: PayableOverrides & { from?: string }
+    overrides?: PayableOverrides & { from?: string },
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -1136,20 +1136,20 @@ export interface CollectionsManager extends BaseContract {
     addMarketsToCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     addRateProvidersToCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -1157,14 +1157,14 @@ export interface CollectionsManager extends BaseContract {
     collectionContainsMarket(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     createCollection(overrides?: CallOverrides): Promise<BigNumber>;
 
     getApproved(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     getBorrowOfferAPR(
@@ -1173,13 +1173,13 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getCollectionMarketRateProviders(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string[]>;
 
     getLimitOrderAPR(
@@ -1189,7 +1189,7 @@ export interface CollectionsManager extends BaseContract {
       rateProvider: string,
       maturity: BigNumberish,
       isLoanOffer: boolean,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLoanOfferAPR(
@@ -1198,24 +1198,24 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getSubscribedCollections(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber[]>;
 
     getUserDefinedCollectionCopyBorrowOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<CopyLimitOrderConfigStructOutput>;
 
     getUserDefinedCollectionCopyLoanOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<CopyLimitOrderConfigStructOutput>;
 
     initialize(_sizeFactory: string, overrides?: CallOverrides): Promise<void>;
@@ -1223,7 +1223,7 @@ export interface CollectionsManager extends BaseContract {
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1231,7 +1231,7 @@ export interface CollectionsManager extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isCopyingCollectionMarketRateProvider(
@@ -1239,7 +1239,7 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       market: string,
       rateProvider: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1247,18 +1247,18 @@ export interface CollectionsManager extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isSubscribedToCollection(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     isValidCollectionId(
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     multicall(data: BytesLike[], overrides?: CallOverrides): Promise<string[]>;
@@ -1272,21 +1272,21 @@ export interface CollectionsManager extends BaseContract {
     removeMarketsFromCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     removeRateProvidersFromCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
@@ -1294,13 +1294,13 @@ export interface CollectionsManager extends BaseContract {
       to: string,
       tokenId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     setUserCollectionCopyLimitOrderConfigs(
@@ -1308,31 +1308,31 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     subscribeUserToCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<boolean>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
     tokenByIndex(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     tokenOfOwnerByIndex(
       owner: string,
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
@@ -1343,19 +1343,19 @@ export interface CollectionsManager extends BaseContract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     unsubscribeUserFromCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
   };
 
@@ -1363,23 +1363,23 @@ export interface CollectionsManager extends BaseContract {
     "Approval(address,address,uint256)"(
       owner?: string | null,
       approved?: string | null,
-      tokenId?: BigNumberish | null
+      tokenId?: BigNumberish | null,
     ): ApprovalEventFilter;
     Approval(
       owner?: string | null,
       approved?: string | null,
-      tokenId?: BigNumberish | null
+      tokenId?: BigNumberish | null,
     ): ApprovalEventFilter;
 
     "ApprovalForAll(address,address,bool)"(
       owner?: string | null,
       operator?: string | null,
-      approved?: null
+      approved?: null,
     ): ApprovalForAllEventFilter;
     ApprovalForAll(
       owner?: string | null,
       operator?: string | null,
-      approved?: null
+      approved?: null,
     ): ApprovalForAllEventFilter;
 
     "Initialized(uint64)"(version?: null): InitializedEventFilter;
@@ -1387,84 +1387,84 @@ export interface CollectionsManager extends BaseContract {
 
     "MarketAddedToCollection(uint256,address)"(
       collectionId?: BigNumberish | null,
-      market?: string | null
+      market?: string | null,
     ): MarketAddedToCollectionEventFilter;
     MarketAddedToCollection(
       collectionId?: BigNumberish | null,
-      market?: string | null
+      market?: string | null,
     ): MarketAddedToCollectionEventFilter;
 
     "MarketRemovedFromCollection(uint256,address)"(
       collectionId?: BigNumberish | null,
-      market?: string | null
+      market?: string | null,
     ): MarketRemovedFromCollectionEventFilter;
     MarketRemovedFromCollection(
       collectionId?: BigNumberish | null,
-      market?: string | null
+      market?: string | null,
     ): MarketRemovedFromCollectionEventFilter;
 
     "RateProviderAddedToMarket(uint256,address,address)"(
       collectionId?: BigNumberish | null,
       market?: string | null,
-      rateProvider?: string | null
+      rateProvider?: string | null,
     ): RateProviderAddedToMarketEventFilter;
     RateProviderAddedToMarket(
       collectionId?: BigNumberish | null,
       market?: string | null,
-      rateProvider?: string | null
+      rateProvider?: string | null,
     ): RateProviderAddedToMarketEventFilter;
 
     "RateProviderRemovedFromMarket(uint256,address,address)"(
       collectionId?: BigNumberish | null,
       market?: string | null,
-      rateProvider?: string | null
+      rateProvider?: string | null,
     ): RateProviderRemovedFromMarketEventFilter;
     RateProviderRemovedFromMarket(
       collectionId?: BigNumberish | null,
       market?: string | null,
-      rateProvider?: string | null
+      rateProvider?: string | null,
     ): RateProviderRemovedFromMarketEventFilter;
 
     "SetUserCollectionCopyLimitOrderConfigs(address,uint256,(uint256,uint256,uint256,uint256,int256),(uint256,uint256,uint256,uint256,int256))"(
       user?: string | null,
       collectionId?: BigNumberish | null,
       copyLoanOfferConfig?: null,
-      copyBorrowOfferConfig?: null
+      copyBorrowOfferConfig?: null,
     ): SetUserCollectionCopyLimitOrderConfigsEventFilter;
     SetUserCollectionCopyLimitOrderConfigs(
       user?: string | null,
       collectionId?: BigNumberish | null,
       copyLoanOfferConfig?: null,
-      copyBorrowOfferConfig?: null
+      copyBorrowOfferConfig?: null,
     ): SetUserCollectionCopyLimitOrderConfigsEventFilter;
 
     "SubscribedToCollection(address,uint256)"(
       user?: string | null,
-      collectionId?: BigNumberish | null
+      collectionId?: BigNumberish | null,
     ): SubscribedToCollectionEventFilter;
     SubscribedToCollection(
       user?: string | null,
-      collectionId?: BigNumberish | null
+      collectionId?: BigNumberish | null,
     ): SubscribedToCollectionEventFilter;
 
     "Transfer(address,address,uint256)"(
       from?: string | null,
       to?: string | null,
-      tokenId?: BigNumberish | null
+      tokenId?: BigNumberish | null,
     ): TransferEventFilter;
     Transfer(
       from?: string | null,
       to?: string | null,
-      tokenId?: BigNumberish | null
+      tokenId?: BigNumberish | null,
     ): TransferEventFilter;
 
     "UnsubscribedFromCollection(address,uint256)"(
       user?: string | null,
-      collectionId?: BigNumberish | null
+      collectionId?: BigNumberish | null,
     ): UnsubscribedFromCollectionEventFilter;
     UnsubscribedFromCollection(
       user?: string | null,
-      collectionId?: BigNumberish | null
+      collectionId?: BigNumberish | null,
     ): UnsubscribedFromCollectionEventFilter;
 
     "Upgraded(address)"(implementation?: string | null): UpgradedEventFilter;
@@ -1477,20 +1477,20 @@ export interface CollectionsManager extends BaseContract {
     addMarketsToCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     addRateProvidersToCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -1498,16 +1498,16 @@ export interface CollectionsManager extends BaseContract {
     collectionContainsMarket(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     createCollection(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     getApproved(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getBorrowOfferAPR(
@@ -1516,13 +1516,13 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getCollectionMarketRateProviders(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLimitOrderAPR(
@@ -1532,7 +1532,7 @@ export interface CollectionsManager extends BaseContract {
       rateProvider: string,
       maturity: BigNumberish,
       isLoanOffer: boolean,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getLoanOfferAPR(
@@ -1541,35 +1541,35 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getSubscribedCollections(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedCollectionCopyBorrowOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     getUserDefinedCollectionCopyLoanOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     initialize(
       _sizeFactory: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1577,7 +1577,7 @@ export interface CollectionsManager extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isCopyingCollectionMarketRateProvider(
@@ -1585,7 +1585,7 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       market: string,
       rateProvider: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1593,30 +1593,30 @@ export interface CollectionsManager extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isSubscribedToCollection(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     isValidCollectionId(
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
     ownerOf(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1624,21 +1624,21 @@ export interface CollectionsManager extends BaseContract {
     removeMarketsFromCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     removeRateProvidersFromCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
@@ -1646,13 +1646,13 @@ export interface CollectionsManager extends BaseContract {
       to: string,
       tokenId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     setUserCollectionCopyLimitOrderConfigs(
@@ -1660,36 +1660,36 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     subscribeUserToCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     tokenByIndex(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     tokenOfOwnerByIndex(
       owner: string,
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     tokenURI(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1698,64 +1698,64 @@ export interface CollectionsManager extends BaseContract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     unsubscribeUserFromCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<BigNumber>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     UPGRADE_INTERFACE_VERSION(
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     addMarketsToCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     addRateProvidersToCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     balanceOf(
       owner: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     collectionContainsMarket(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     createCollection(
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     getApproved(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getBorrowOfferAPR(
@@ -1764,13 +1764,13 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getCollectionMarketRateProviders(
       collectionId: BigNumberish,
       market: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getLimitOrderAPR(
@@ -1780,7 +1780,7 @@ export interface CollectionsManager extends BaseContract {
       rateProvider: string,
       maturity: BigNumberish,
       isLoanOffer: boolean,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getLoanOfferAPR(
@@ -1789,35 +1789,35 @@ export interface CollectionsManager extends BaseContract {
       market: string,
       rateProvider: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getSubscribedCollections(
       user: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserDefinedCollectionCopyBorrowOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     getUserDefinedCollectionCopyLoanOfferConfig(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     initialize(
       _sizeFactory: string,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isBorrowAPRLowerThanLoanOfferAPRs(
@@ -1825,7 +1825,7 @@ export interface CollectionsManager extends BaseContract {
       borrowAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isCopyingCollectionMarketRateProvider(
@@ -1833,7 +1833,7 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       market: string,
       rateProvider: string,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isLoanAPRGreaterThanBorrowOfferAPRs(
@@ -1841,30 +1841,30 @@ export interface CollectionsManager extends BaseContract {
       loanAPR: BigNumberish,
       market: string,
       maturity: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isSubscribedToCollection(
       user: string,
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     isValidCollectionId(
       collectionId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     multicall(
       data: BytesLike[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     ownerOf(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     proxiableUUID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1872,21 +1872,21 @@ export interface CollectionsManager extends BaseContract {
     removeMarketsFromCollection(
       collectionId: BigNumberish,
       markets: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     removeRateProvidersFromCollectionMarket(
       collectionId: BigNumberish,
       market: string,
       rateProviders: string[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256,bytes)"(
@@ -1894,13 +1894,13 @@ export interface CollectionsManager extends BaseContract {
       to: string,
       tokenId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     setUserCollectionCopyLimitOrderConfigs(
@@ -1908,36 +1908,36 @@ export interface CollectionsManager extends BaseContract {
       collectionId: BigNumberish,
       copyLoanOfferConfig: CopyLimitOrderConfigStruct,
       copyBorrowOfferConfig: CopyLimitOrderConfigStruct,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     subscribeUserToCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
       interfaceId: BytesLike,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     tokenByIndex(
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     tokenOfOwnerByIndex(
       owner: string,
       index: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     tokenURI(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1946,19 +1946,19 @@ export interface CollectionsManager extends BaseContract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     unsubscribeUserFromCollections(
       user: string,
       collectionIds: BigNumberish[],
-      overrides?: Overrides & { from?: string }
+      overrides?: Overrides & { from?: string },
     ): Promise<PopulatedTransaction>;
 
     upgradeToAndCall(
       newImplementation: string,
       data: BytesLike,
-      overrides?: PayableOverrides & { from?: string }
+      overrides?: PayableOverrides & { from?: string },
     ): Promise<PopulatedTransaction>;
   };
 }

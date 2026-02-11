@@ -119,7 +119,7 @@ export class IERC721Errors__factory {
   }
   static connect(
     address: string,
-    signerOrProvider: Signer | Provider
+    signerOrProvider: Signer | Provider,
   ): IERC721Errors {
     return new Contract(address, _abi, signerOrProvider) as IERC721Errors;
   }
