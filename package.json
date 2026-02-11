@@ -1,6 +1,6 @@
 {
   "name": "@rheo/sdk",
-  "version": "0.2.16",
+  "version": "0.3.0",
   "description": "Rheo TypeScript SDK",
   "type": "module",
   "repository": {
@@ -27,6 +27,11 @@
       "import": "./dist/esm/v1.8/*.js",
       "require": "./dist/cjs/v1.8/*.js",
       "types": "./dist/types/v1.8/*.d.ts"
+    },
+    "./v1.9/*": {
+      "import": "./dist/esm/v1.9/*.js",
+      "require": "./dist/cjs/v1.9/*.js",
+      "types": "./dist/types/v1.9/*.d.ts"
     },
     "./v1.7/*": {
       "import": "./dist/esm/v1.7/*.js",
