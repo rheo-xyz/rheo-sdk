@@ -670,7 +670,7 @@ export declare namespace SellCreditMarket {
   };
 }
 
-export interface SizeInterface extends utils.Interface {
+export interface RheoInterface extends utils.Interface {
   functions: {
     "DEFAULT_ADMIN_ROLE()": FunctionFragment;
     "UPGRADE_INTERFACE_VERSION()": FunctionFragment;
@@ -1300,12 +1300,12 @@ export type UpgradedEvent = TypedEvent<[string], UpgradedEventObject>;
 
 export type UpgradedEventFilter = TypedEventFilter<UpgradedEvent>;
 
-export interface Size extends BaseContract {
+export interface Rheo extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: SizeInterface;
+  interface: RheoInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,

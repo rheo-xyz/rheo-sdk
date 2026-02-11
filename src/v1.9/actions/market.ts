@@ -11,7 +11,7 @@ import {
   SetUserConfigurationParamsStruct,
   SetCopyLimitOrderConfigsParamsStruct,
   SetVaultParamsStruct,
-} from "../types/ethers-contracts/Size";
+} from "../types/ethers-contracts/Rheo";
 
 export type MarketFunctionName =
   | "deposit"

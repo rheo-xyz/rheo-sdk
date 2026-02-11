@@ -1,11 +1,11 @@
 import { describe, expect, test } from "@jest/globals";
 import { ethers } from "ethers";
 import SDK from "../src";
-import SizeABI from "../src/fm-v1.8/abi/Size.json";
-import SizeFactoryABI from "../src/fm-v1.8/abi/SizeFactory.json";
-import ErrorsABI from "../src/fm-v1.8/abi/Errors.json";
+import RheoABI from "../src/v1.9/abi/Rheo.json";
+import SizeFactoryABI from "../src/v1.9/abi/SizeFactory.json";
+import ErrorsABI from "../src/v1.9/abi/Errors.json";
 
-describe("@rheo/sdk FM-v1.8", () => {
+describe("@rheo/sdk v1.9", () => {
   const sizeFactory = "0x000000000000000000000000000000000000ffff";
   const market = "0x0000000000000000000000000000000000000123";
   const alice = "0x0000000000000000000000000000000000010000";
@@ -16,14 +16,14 @@ describe("@rheo/sdk FM-v1.8", () => {
   const collateral2 = "0x0000000000000000000000000000000000007777";
   const usdc = "0x0000000000000000000000000000000000008888";
 
-  const ISize = new ethers.utils.Interface(SizeABI.abi);
+  const IRheo = new ethers.utils.Interface(RheoABI.abi);
   const ISizeFactory = new ethers.utils.Interface(SizeFactoryABI.abi);
   const IErrors = new ethers.utils.Interface(ErrorsABI.abi);
 
   test("builds fixed-maturity buyCreditLimit", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const maturities = [1893456000n, 1893542400n];
@@ -38,14 +38,14 @@ describe("@rheo/sdk FM-v1.8", () => {
 
     expect(txs[0].target).toBe(market);
     expect(txs[0].data).toBe(
-      ISize.encodeFunctionData("buyCreditLimit", [{ maturities, aprs }]),
+      IRheo.encodeFunctionData("buyCreditLimit", [{ maturities, aprs }]),
     );
   });
 
   test("builds buyCreditMarket with maturity", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const params = {
@@ -64,14 +64,14 @@ describe("@rheo/sdk FM-v1.8", () => {
 
     expect(txs[0].target).toBe(market);
     expect(txs[0].data).toBe(
-      ISize.encodeFunctionData("buyCreditMarket", [params]),
+      IRheo.encodeFunctionData("buyCreditMarket", [params]),
     );
   });
 
-  test("FM-v1.8 ideal flow encoding + decoding", () => {
+  test("v1.9 ideal flow encoding + decoding", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const maturities = [1893456000n, 1893542400n];
@@ -180,10 +180,10 @@ describe("@rheo/sdk FM-v1.8", () => {
 )`);
   });
 
-  test("FM-v1.8 borrow from multiple markets encoding + decoding", () => {
+  test("v1.9 borrow from multiple markets encoding + decoding", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const wethAmount = 300n;
@@ -336,7 +336,7 @@ describe("@rheo/sdk FM-v1.8", () => {
   test("builds subscribe/unsubscribe with BigNumberish[] inputs", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const subscribeParams = [ethers.BigNumber.from(42), "43"];
@@ -364,13 +364,13 @@ describe("@rheo/sdk FM-v1.8", () => {
   });
 
   test("removes liquidateWithReplacement from interface", () => {
-    expect(() => ISize.getFunction("liquidateWithReplacement")).toThrow();
+    expect(() => IRheo.getFunction("liquidateWithReplacement")).toThrow();
   });
 
   test("decodes INVALID_MATURITY error", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     const errorData = IErrors.encodeErrorResult("INVALID_MATURITY", [123n]);
@@ -380,7 +380,7 @@ describe("@rheo/sdk FM-v1.8", () => {
   test("market actions omit liquidateWithReplacement", () => {
     const sdk = new SDK({
       sizeFactory,
-      version: "FM-v1.8",
+      version: "v1.9",
     });
 
     expect("liquidateWithReplacement" in sdk.market).toBe(false);

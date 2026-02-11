@@ -21,7 +21,7 @@ import {
   SetCopyLimitOrderConfigsParamsStruct,
   SetVaultOnBehalfOfParamsStruct,
   SetVaultParamsStruct,
-} from "../types/ethers-contracts/Size";
+} from "../types/ethers-contracts/Rheo";
 import {
   MarketFunctionName,
   MarketOperation,

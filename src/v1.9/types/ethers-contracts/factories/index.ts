@@ -6,5 +6,5 @@ export { Errors__factory } from "./Errors__factory";
 export { IERC1155Errors__factory } from "./IERC1155Errors__factory";
 export { IERC20Errors__factory } from "./IERC20Errors__factory";
 export { IERC721Errors__factory } from "./IERC721Errors__factory";
-export { Size__factory } from "./Size__factory";
+export { Rheo__factory } from "./Rheo__factory";
 export { SizeFactory__factory } from "./SizeFactory__factory";

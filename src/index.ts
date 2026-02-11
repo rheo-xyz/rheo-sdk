@@ -3,17 +3,9 @@ import {
   MarketOperation as MarketOperationV1_8,
 } from "./v1.8/actions/market";
 import {
-  MarketActions as MarketActionsFM_V1_8,
-  MarketOperation as MarketOperationFM_V1_8,
-} from "./fm-v1.8/actions/market";
-import {
   FactoryActions as FactoryActionsV1_8,
   FactoryOperation as FactoryOperationV1_8,
 } from "./v1.8/actions/factory";
-import {
-  FactoryActions as FactoryActionsFM_V1_8,
-  FactoryOperation as FactoryOperationFM_V1_8,
-} from "./fm-v1.8/actions/factory";
 import {
   FactoryActions as FactoryActionsV1_7,
   FactoryOperation as FactoryOperationV1_7,
@@ -23,8 +15,16 @@ import {
   MarketOperation as MarketOperationV1_7,
 } from "./v1.7/actions/market";
 import { TxBuilder as TxBuilderV1_8 } from "./v1.8/tx/build";
-import { TxBuilder as TxBuilderFM_V1_8 } from "./fm-v1.8/tx/build";
 import { TxBuilder as TxBuilderV1_7 } from "./v1.7/tx/build";
+import {
+  FactoryActions as FactoryActionsV1_9,
+  FactoryOperation as FactoryOperationV1_9,
+} from "./v1.9/actions/factory";
+import {
+  MarketActions as MarketActionsV1_9,
+  MarketOperation as MarketOperationV1_9,
+} from "./v1.9/actions/market";
+import { TxBuilder as TxBuilderV1_9 } from "./v1.9/tx/build";
 
 import { FullCopy, NoCopy, NullCopy } from "./constants";
 import { ERC20Actions, ERC20Operation } from "./erc20/actions";
@@ -43,7 +43,7 @@ export interface TxArgs {
   value?: BigNumberish;
 }
 
-export type Version = "v1.7" | "v1.8" | "FM-v1.8";
+export type Version = "v1.7" | "v1.8" | "v1.9";
 
 interface SDKParamsCommon {
   labels?: Record<string, string>;
@@ -54,39 +54,39 @@ export interface SDKParamsV1_8 extends SDKParamsCommon {
   version: "v1.8";
 }
 
-export interface SDKParamsFM_V1_8 extends SDKParamsCommon {
-  version: "FM-v1.8";
+export interface SDKParamsV1_9 extends SDKParamsCommon {
+  version: "v1.9";
 }
 
 export interface SDKParamsV1_7 extends SDKParamsCommon {
   version: "v1.7";
 }
 
-export type SDKParams = SDKParamsV1_7 | SDKParamsV1_8 | SDKParamsFM_V1_8;
+export type SDKParams = SDKParamsV1_7 | SDKParamsV1_8 | SDKParamsV1_9;
 
 export type MarketActionsByVersion<T extends Version> = T extends "v1.8"
   ? MarketActionsV1_8
-  : T extends "FM-v1.8"
-    ? MarketActionsFM_V1_8
+  : T extends "v1.9"
+    ? MarketActionsV1_9
   : MarketActionsV1_7;
 export type FactoryActionsByVersion<T extends Version> = T extends "v1.8"
   ? FactoryActionsV1_8
-  : T extends "FM-v1.8"
-    ? FactoryActionsFM_V1_8
+  : T extends "v1.9"
+    ? FactoryActionsV1_9
   : FactoryActionsV1_7;
 export type TxBuilderByVersion<T extends Version> = T extends "v1.8"
   ? TxBuilderV1_8
-  : T extends "FM-v1.8"
-    ? TxBuilderFM_V1_8
+  : T extends "v1.9"
+    ? TxBuilderV1_9
   : TxBuilderV1_7;
 
 export type OperationV1_8 =
   | MarketOperationV1_8
   | FactoryOperationV1_8
   | ERC20Operation;
-export type OperationFM_V1_8 =
-  | MarketOperationFM_V1_8
-  | FactoryOperationFM_V1_8
+export type OperationV1_9 =
+  | MarketOperationV1_9
+  | FactoryOperationV1_9
   | ERC20Operation;
 export type OperationV1_7 =
   | MarketOperationV1_7
@@ -126,12 +126,11 @@ class SDK<T extends Version> {
       this.txBuilder = new TxBuilderV1_8(
         this.sizeFactory,
       ) as TxBuilderByVersion<T>;
-    } else if (params.version === "FM-v1.8") {
-      this.factory =
-        new FactoryActionsFM_V1_8() as FactoryActionsByVersion<T>;
-      this.market = new MarketActionsFM_V1_8() as MarketActionsByVersion<T>;
+    } else if (params.version === "v1.9") {
+      this.factory = new FactoryActionsV1_9() as FactoryActionsByVersion<T>;
+      this.market = new MarketActionsV1_9() as MarketActionsByVersion<T>;
 
-      this.txBuilder = new TxBuilderFM_V1_8(
+      this.txBuilder = new TxBuilderV1_9(
         this.sizeFactory,
       ) as TxBuilderByVersion<T>;
     } else {
@@ -153,11 +152,11 @@ class SDK<T extends Version> {
           recipient?: Address,
         ) => TxArgs[];
       }
-    : T extends "FM-v1.8"
+    : T extends "v1.9"
       ? {
           build: (
             onBehalfOf: Address,
-            operations: OperationFM_V1_8[],
+            operations: OperationV1_9[],
             recipient?: Address,
           ) => TxArgs[];
         }
@@ -173,8 +172,8 @@ class SDK<T extends Version> {
         onBehalfOf: Address,
         operations: T extends "v1.8"
           ? OperationV1_8[]
-          : T extends "FM-v1.8"
-            ? OperationFM_V1_8[]
+          : T extends "v1.9"
+            ? OperationV1_9[]
             : OperationV1_7[],
         recipient?: Address,
       ) => this.txBuilder.build(onBehalfOf, operations as any, recipient),

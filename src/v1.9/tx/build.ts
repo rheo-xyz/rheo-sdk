@@ -1,5 +1,5 @@
 import { BigNumberish, ethers } from "ethers";
-import SizeABI from "../abi/Size.json";
+import RheoABI from "../abi/Rheo.json";
 import SizeFactoryABI from "../abi/SizeFactory.json";
 import ERC20ABI from "../../erc20/abi/ERC20.json";
 import { MarketOperation } from "../actions/market";
@@ -7,16 +7,16 @@ import { FactoryOperation } from "../actions/factory";
 import { ERC20Operation } from "../../erc20/actions";
 import Authorization, { ActionsBitmap, type Action } from "../../Authorization";
 import { onBehalfOfOperation } from "../actions/onBehalfOf";
-import { TxArgs, Address, OperationFM_V1_8 } from "../../index";
+import { TxArgs, Address, OperationV1_9 } from "../../index";
 
 function isMarketOperation(
-  operation: OperationFM_V1_8,
+  operation: OperationV1_9,
 ): operation is MarketOperation {
   return "market" in operation;
 }
 
 function isERC20Operation(
-  operation: OperationFM_V1_8,
+  operation: OperationV1_9,
 ): operation is ERC20Operation {
   return "functionName" in operation && operation.functionName === "approve";
 }
@@ -32,13 +32,13 @@ interface Subcall {
 
 export class TxBuilder {
   private readonly sizeFactory: Address;
-  private readonly ISize: ethers.utils.Interface;
+  private readonly IRheo: ethers.utils.Interface;
   private readonly ISizeFactory: ethers.utils.Interface;
   private readonly IERC20: ethers.utils.Interface;
 
   constructor(sizeFactory: Address) {
     this.sizeFactory = sizeFactory;
-    this.ISize = new ethers.utils.Interface(SizeABI.abi);
+    this.IRheo = new ethers.utils.Interface(RheoABI.abi);
     this.ISizeFactory = new ethers.utils.Interface(SizeFactoryABI.abi);
     this.IERC20 = new ethers.utils.Interface(ERC20ABI.abi);
   }
@@ -60,11 +60,11 @@ export class TxBuilder {
         );
         return {
           target: market,
-          calldata: this.ISize.encodeFunctionData(functionName, [params]),
+          calldata: this.IRheo.encodeFunctionData(functionName, [params]),
           value: value,
           isERC20: false,
           onBehalfOfCalldata: onBehalfOfOp
-            ? this.ISize.encodeFunctionData(onBehalfOfOp.functionName, [
+            ? this.IRheo.encodeFunctionData(onBehalfOfOp.functionName, [
                 onBehalfOfOp.externalParams,
               ])
             : undefined,
@@ -166,7 +166,7 @@ export class TxBuilder {
       const calldatas = group.ops.map(
         (g) => g.onBehalfOfCalldata ?? g.calldata,
       );
-      const multicall = this.ISize.encodeFunctionData("multicall", [calldatas]);
+      const multicall = this.IRheo.encodeFunctionData("multicall", [calldatas]);
       return this.ISizeFactory.encodeFunctionData("callMarket", [
         group.target,
         multicall,
