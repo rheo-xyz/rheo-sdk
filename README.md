@@ -31,7 +31,7 @@ const sdk = new SDK({
 v1.9 notes:
 - Fixed-maturity offers only: `buy/sellCreditLimit` use `{ maturities[], aprs[] }`.
 - Market orders take `maturity` (not `tenor`).
-- `sizeFactory` is used for both legacy Size markets and new Rheo markets. `RheoFactory` is not used by the SDK.
+- `sizeFactory` is used for both legacy Size markets and new Rheo markets. There is no `RheoFactory`.
 
 ```ts
 const txs = size.tx.build(alice, [
