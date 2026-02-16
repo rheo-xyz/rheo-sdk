@@ -32,6 +32,10 @@ import { ErrorDecoder } from "./decoder/error";
 import { CalldataDecoder } from "./decoder/calldata";
 import selector from "./helpers/selector";
 import deadline from "./helpers/deadline";
+import {
+  parseRiskConfig,
+  type ParsedRiskConfig,
+} from "./helpers/riskConfig";
 import { BigNumberish, ethers } from "ethers";
 import Authorization from "./Authorization";
 
@@ -185,6 +189,7 @@ class SDK<T extends Version> {
       deadline,
       selector,
       Authorization,
+      parseRiskConfig,
     };
   }
 
@@ -204,4 +209,5 @@ class SDK<T extends Version> {
   }
 }
 
+export { parseRiskConfig, type ParsedRiskConfig };
 export default SDK;
