@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { ethers } from "ethers";
-import SDK from "../src";
+import SDK, { parseRiskConfig } from "../src";
 import RheoABI from "../src/v1.9/abi/Rheo.json";
 import SizeFactoryABI from "../src/v1.9/abi/SizeFactory.json";
 import ErrorsABI from "../src/v1.9/abi/Errors.json";
@@ -384,5 +384,68 @@ describe("@rheo/sdk v1.9", () => {
     });
 
     expect("liquidateWithReplacement" in sdk.market).toBe(false);
+  });
+
+  test("parseRiskConfig parses 6-field FM/Rheo risk config with correct ABI order", () => {
+    // Simulates raw contract return: [crOpening, crLiquidation, minimumCreditBorrowToken, minTenor, maxTenor, maturities]
+    const rawTuple = [
+      ethers.BigNumber.from(32), // crOpening
+      ethers.BigNumber.from("1500000000000000000"), // crLiquidation
+      ethers.BigNumber.from("1300000000000000000"), // minimumCreditBorrowToken
+      ethers.BigNumber.from(1), // minTenor
+      ethers.BigNumber.from(3600), // maxTenor
+      [ethers.BigNumber.from(1893456000), ethers.BigNumber.from(1893542400)], // maturities
+    ];
+
+    const parsed = parseRiskConfig(rawTuple);
+
+    expect(parsed.crOpening).toBe("32");
+    expect(parsed.crLiquidation).toBe("1500000000000000000");
+    expect(parsed.minimumCreditBorrowToken).toBe("1300000000000000000");
+    expect(parsed.minTenor).toBe("1");
+    expect(parsed.maxTenor).toBe("3600");
+    expect(parsed.maturities).toEqual(["1893456000", "1893542400"]);
+  });
+
+  test("parseRiskConfig parses 5-field legacy Size risk config", () => {
+    const rawTuple = [
+      ethers.BigNumber.from(32),
+      ethers.BigNumber.from("1500000000000000000"),
+      ethers.BigNumber.from("1300000000000000000"),
+      ethers.BigNumber.from(86400),
+      ethers.BigNumber.from(31536000),
+    ];
+
+    const parsed = parseRiskConfig(rawTuple);
+
+    expect(parsed.crOpening).toBe("32");
+    expect(parsed.crLiquidation).toBe("1500000000000000000");
+    expect(parsed.minimumCreditBorrowToken).toBe("1300000000000000000");
+    expect(parsed.minTenor).toBe("86400");
+    expect(parsed.maxTenor).toBe("31536000");
+    expect(parsed.maturities).toBeUndefined();
+  });
+
+  test("parseRiskConfig parses ethers Result object with named keys", () => {
+    const result = {
+      crOpening: ethers.BigNumber.from(32),
+      crLiquidation: ethers.BigNumber.from("1500000000000000000"),
+      minimumCreditBorrowToken: ethers.BigNumber.from("1300000000000000000"),
+      minTenor: ethers.BigNumber.from(1),
+      maxTenor: ethers.BigNumber.from(3600),
+      maturities: [
+        ethers.BigNumber.from(1893456000),
+        ethers.BigNumber.from(1893542400),
+      ],
+    };
+
+    const parsed = parseRiskConfig(result);
+
+    expect(parsed.crOpening).toBe("32");
+    expect(parsed.crLiquidation).toBe("1500000000000000000");
+    expect(parsed.minimumCreditBorrowToken).toBe("1300000000000000000");
+    expect(parsed.minTenor).toBe("1");
+    expect(parsed.maxTenor).toBe("3600");
+    expect(parsed.maturities).toEqual(["1893456000", "1893542400"]);
   });
 });
