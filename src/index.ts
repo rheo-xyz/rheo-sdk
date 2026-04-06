@@ -36,6 +36,10 @@ import {
   parseRiskConfig,
   type ParsedRiskConfig,
 } from "./helpers/riskConfig";
+import {
+  buyCreditMarketWithCR,
+  sellCreditMarketWithCR,
+} from "./helpers/creditMarketWithCR";
 import { BigNumberish, ethers } from "ethers";
 import Authorization from "./Authorization";
 
@@ -190,6 +194,8 @@ class SDK<T extends Version> {
       selector,
       Authorization,
       parseRiskConfig,
+      buyCreditMarketWithCR,
+      sellCreditMarketWithCR,
     };
   }
 
