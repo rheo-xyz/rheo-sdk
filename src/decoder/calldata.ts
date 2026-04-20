@@ -1,3 +1,16 @@
+/**
+ * Decodes Rheo / Size / ERC-20 transaction calldata into a
+ * multi-line, indented, human-readable form suitable for logs, previews,
+ * and test snapshots. Used by `sdk.decode.calldata(data)`.
+ *
+ * Unlike {@link ErrorDecoder}, which only unwraps reverts, this decoder
+ * also recurses into `multicall`, `callMarket`, and any bytes argument
+ * that itself looks like an ABI-encoded function call — producing a
+ * tree-shaped view of a composed SizeFactory transaction.
+ *
+ * @module decoder/calldata
+ */
+
 import { ethers } from "ethers";
 import { Result } from "@ethersproject/abi";
 
@@ -13,10 +26,24 @@ import ERC20 from "../erc20/abi/ERC20.json";
 
 import { Action, isActionSet } from "../Authorization";
 
+/**
+ * Calldata decoder that unions every Rheo / Size ABI across versions and
+ * recursively formats nested calls (multicall, callMarket, bytes-encoded
+ * arguments). Uses a configurable `labels` map to substitute
+ * human-readable names for well-known addresses and sentinel values (e.g.
+ * `type(uint256).max`, `address(0)`).
+ */
 export class CalldataDecoder {
   private readonly abi: ethers.utils.Interface;
   private readonly labels: Record<string, string>;
 
+  /**
+   * @param labels - Map from a lowercased string form of an address or
+   *   sentinel value to the display name it should render as. The SDK
+   *   default passes in `type(uint256).max`, `type(int256).max/min`, and
+   *   `address(0)` substitutions; callers can extend it with named
+   *   contract/EOA labels at SDK-construction time via `new SDK({ labels })`.
+   */
   constructor(labels: Record<string, string> = {}) {
     const abis = [
       ...CollectionsManagerV1_8.abi,
@@ -36,10 +63,16 @@ export class CalldataDecoder {
     );
   }
 
+  /** @internal Indentation helper for recursive formatting. */
   private indent(level: number): string {
     return "  ".repeat(level);
   }
 
+  /**
+   * @internal Builds a single ethers `Interface` over the full merged ABI,
+   * deduplicating function fragments by canonical signature so overlapping
+   * cross-version definitions don't error.
+   */
   private static buildInterface(abi: any[]): ethers.utils.Interface {
     const seen = new Set<string>();
     const deduped = abi
@@ -55,6 +88,40 @@ export class CalldataDecoder {
     return new ethers.utils.Interface(deduped);
   }
 
+  /**
+   * Decodes a transaction calldata string into a human-readable,
+   * indented tree.
+   *
+   * @remarks
+   * Recurses into:
+   * - `multicall(bytes[])` — each inner calldata is decoded and nested.
+   * - `callMarket(address, bytes)` — the inner bytes are decoded as a
+   *   market function call.
+   * - Any `bytes` argument that itself parses as a known function call.
+   *
+   * Also specializes `setAuthorization`'s `uint256` argument: instead of
+   * printing the raw bitmap, it renders `[ACTION_A,ACTION_B,…]` using the
+   * {@link Action} enum names.
+   *
+   * Does not throw on unknown calldata — returns the literal string
+   * `"Unknown function call or invalid calldata"` so it is safe to call on
+   * arbitrary blobs (e.g. for tx-preview UIs).
+   *
+   * @param data - Transaction calldata hex string.
+   * @returns Indented multi-line string representation of the call.
+   *
+   * @example
+   * ```ts
+   * console.log(sdk.decode.calldata(txs[0].data));
+   * // multicall(
+   * //   [
+   * //     setAuthorization(SizeFactory, [DEPOSIT,BUY_CREDIT_LIMIT]),
+   * //     callMarket(0x…, multicall([ depositOnBehalfOf(…), buyCreditLimitOnBehalfOf(…) ])),
+   * //     setAuthorization(SizeFactory, [])
+   * //   ]
+   * // )
+   * ```
+   */
   decode(data: string): string {
     try {
       const tx = this.abi.parseTransaction({ data });
@@ -69,6 +136,10 @@ export class CalldataDecoder {
     }
   }
 
+  /**
+   * @internal Canonicalizes a ParamType to its string form, handling the
+   * tuple and tuple-array edge cases ethers' default stringifier mangles.
+   */
   private static formatType(input: any): string {
     if (input.type === "tuple") {
       const components = input.components
@@ -88,6 +159,11 @@ export class CalldataDecoder {
     return input.type;
   }
 
+  /**
+   * @internal Stringifies a leaf value, substituting through the `labels`
+   * map so well-known addresses and sentinel values render as their
+   * symbolic names.
+   */
   private toString(value: any): string {
     const str = value.toString();
     if (Array.isArray(value)) {
@@ -97,6 +173,10 @@ export class CalldataDecoder {
     }
   }
 
+  /**
+   * @internal Renders an {@link Authorization} bitmap as a list of enum
+   * member names.
+   */
   private decodeAuthorizationBitmap(bitmap: bigint): string {
     const actions: Action[] = [];
     for (let i = 0; i < Action.NUMBER_OF_ACTIONS; i++) {
@@ -107,6 +187,12 @@ export class CalldataDecoder {
     return `[${actions.map((a) => Action[a]).join(",")}]`;
   }
 
+  /**
+   * @internal Formats a function call recursively: indents by `level`,
+   * specializes `setAuthorization` bitmaps, expands `bytes` / `bytes[]`
+   * args as nested calls when parseable, and delegates tuples to
+   * {@link formatTuple}.
+   */
   private recursiveFormat(
     name: string,
     args: Result,
@@ -159,6 +245,10 @@ export class CalldataDecoder {
     return `${name}(\n${this.indent(level + 1)}${formattedArgs.join(",\n" + this.indent(level + 1))}\n${this.indent(level)})`;
   }
 
+  /**
+   * @internal Formats a Solidity tuple (struct) as `{ field: value, ... }`,
+   * recursing through nested tuples and tuple arrays.
+   */
   private formatTuple(
     arg: any,
     input: ethers.utils.ParamType,
@@ -199,6 +289,11 @@ export class CalldataDecoder {
     );
   }
 
+  /**
+   * @internal Attempts to parse nested calldata; falls back to the raw
+   * hex string when parsing fails, so arbitrary `bytes` args don't blow
+   * up the decode of the outer call.
+   */
   private tryDecodeNested(data: string, level: number): string {
     try {
       const nested = this.abi.parseTransaction({ data });

@@ -40,19 +40,24 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "docs/AGENT_CONTEXT.md"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "generate:agent-context": "node scripts/generate-agent-context.cjs",
+    "prebuild": "npm run generate:agent-context",
     "build": "npm run clean && npm run build:types && npm run build:bundles",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build:bundles": "npx rollup -c rollup.config.mjs",
     "clean": "rm -r dist || true",
     "prepare": "npm run build",
     "format": "prettier --write .",
+    "pretest": "npm run generate:agent-context",
     "test": "tsc && jest --config jest.config.cjs",
+    "pretest:coverage": "npm run generate:agent-context",
     "test:coverage": "tsc && jest --coverage --config jest.config.cjs"
   },
   "keywords": [

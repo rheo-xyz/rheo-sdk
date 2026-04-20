@@ -1,3 +1,12 @@
+/**
+ * Transaction builder for the v1.9 (Rheo) surface. Converts a list of
+ * tagged {@link MarketOperation}, {@link FactoryOperation}, and
+ * {@link ERC20Operation} values into a minimal array of
+ * {@link TxArgs} ready to sign.
+ *
+ * @module v1.9/tx/build
+ */
+
 import { BigNumberish, ethers } from "ethers";
 import RheoABI from "../abi/Rheo.json";
 import SizeFactoryABI from "../abi/SizeFactory.json";
@@ -30,6 +39,12 @@ interface Subcall {
   action?: Action;
 }
 
+/**
+ * Encodes a batch of v1.9 operations into unsigned transactions the caller
+ * can submit. Instantiated by the {@link SDK} when `version === "v1.9"` —
+ * consumers access it through `sdk.tx.build(...)` rather than constructing
+ * one directly.
+ */
 export class TxBuilder {
   private readonly sizeFactory: Address;
   private readonly IRheo: ethers.utils.Interface;
@@ -43,6 +58,7 @@ export class TxBuilder {
     this.IERC20 = new ethers.utils.Interface(ERC20ABI.abi);
   }
 
+  /** @internal Maps raw operations to intermediate `Subcall` records. */
   private getSubcalls(
     operations: (MarketOperation | FactoryOperation | ERC20Operation)[],
     onBehalfOf: Address,
@@ -104,6 +120,7 @@ export class TxBuilder {
     });
   }
 
+  /** @internal Extracts ERC-20 subcalls into stand-alone `TxArgs`. */
   private getERC20Subcalls(subcalls: Subcall[]): TxArgs[] {
     return subcalls
       .filter((op) => op.isERC20)
@@ -114,12 +131,14 @@ export class TxBuilder {
       }));
   }
 
+  /** @internal True when at least one subcall needs an authorization bit. */
   private requiresAuthorization(subcalls: Subcall[]): boolean {
     return subcalls
       .map((op) => op.action)
       .some((action): action is Action => action !== undefined);
   }
 
+  /** @internal Combines all required action bits into one {@link ActionsBitmap}. */
   private getActionsBitmap(subcalls: Subcall[]): ActionsBitmap {
     const actions = subcalls
       .map((op) => op.action)
@@ -127,6 +146,11 @@ export class TxBuilder {
     return Authorization.getActionsBitmap(actions);
   }
 
+  /**
+   * @internal Groups per-market subcalls and returns the factory-level
+   * calldatas (`callMarket(market, multicall(...))` or direct factory
+   * functions) that the outer multicall will execute.
+   */
   private getSizeFactorySubcallsDatas(subcalls: Subcall[]): string[] {
     const ops = subcalls.filter((op) => !op.isERC20);
 
@@ -174,6 +198,11 @@ export class TxBuilder {
     });
   }
 
+  /**
+   * @internal Returns the `[setAuthorization(bitmap), setAuthorization(0)]`
+   * pair that wraps the factory multicall, or `[]` when the batch needs no
+   * authorization.
+   */
   private getAuthorizationSubcallsDatas(
     subcalls: Subcall[],
   ): [string, string] | [] {
@@ -192,6 +221,62 @@ export class TxBuilder {
     }
   }
 
+  /**
+   * Encodes `operations` into one or more unsigned transactions.
+   *
+   * @remarks
+   * The returned `TxArgs[]` is ordered and complete: sign and submit each
+   * entry in order. The builder does the following, in this order:
+   *
+   * 1. **ERC-20 approvals come out first** as stand-alone transactions
+   *    (one `TxArgs` per approve), targeting the token contract directly.
+   *    The user must sign these before the SizeFactory can pull funds.
+   * 2. **The remaining operations are merged into a single SizeFactory
+   *    multicall.** Market operations targeting the same market are
+   *    grouped under one `callMarket(market, multicall(...))`; market
+   *    operations targeting different markets become separate `callMarket`
+   *    entries; factory-level calls (subscribe/unsubscribe/etc.) appear
+   *    inline in the outer multicall.
+   * 3. **Authorization is automatic.** If any market operation is present,
+   *    the builder prepends `setAuthorization(sizeFactory, bitmap)` and
+   *    appends `setAuthorization(sizeFactory, 0)` inside the outer
+   *    multicall so the grant is established and cleared in the same
+   *    transaction. Do not emit `setAuthorization` operations yourself —
+   *    doing so will double-grant.
+   * 4. **Direct-to-`*OnBehalfOf` rewriting.** Each market call is replaced
+   *    by its delegated counterpart (see
+   *    {@link onBehalfOfOperation}); `onBehalfOf` is threaded into every
+   *    one, and `recipient` (when applicable) defaults to `onBehalfOf`.
+   *
+   * Single-operation edge case: when exactly one operation is passed, the
+   * builder returns a single `TxArgs` targeting the relevant contract
+   * directly (no multicall wrapping, no auth pair) — this is the common
+   * "approve only" or "subscribe only" case.
+   *
+   * @param onBehalfOf - The user whose positions are being modified. The
+   *   EOA signing the returned transactions can be the same address or a
+   *   delegate; either way, the market will credit/debit `onBehalfOf`.
+   * @param operations - Array of tagged operations to batch.
+   * @param recipient - Optional token-recipient override for taker and
+   *   self-liquidation operations. @defaultValue `onBehalfOf`
+   * @returns Array of unsigned {@link TxArgs} in the order they must be
+   *   submitted.
+   * @throws If `operations` is empty.
+   *
+   * @example
+   * ```ts
+   * const txs = sdk.tx.build(alice, [
+   *   sdk.erc20.approve(usdc, sdk.sizeFactory, ethers.constants.MaxUint256),
+   *   sdk.market.deposit(market, { token: usdc, amount: 1_000_000n, to: alice }),
+   *   sdk.market.buyCreditLimit(market, {
+   *     maturities: [1893456000n],
+   *     aprs: [500n],
+   *   }),
+   * ]);
+   * // txs[0] → approve on usdc
+   * // txs[1] → SizeFactory multicall(setAuth, callMarket(market, multicall(deposit, buyCreditLimit)), nullAuth)
+   * ```
+   */
   build(
     onBehalfOf: Address,
     operations: (MarketOperation | FactoryOperation | ERC20Operation)[],
