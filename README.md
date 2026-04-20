@@ -176,6 +176,19 @@ console.log(decodedCalldata);
 // ),
 ```
 
+## For AI agents
+
+The SDK ships a curated context document at [`docs/AGENT_CONTEXT.md`](docs/AGENT_CONTEXT.md) describing the v1.9 composition contract — parameter shapes, recipes, and gotchas — for use as LLM context when generating inline transaction suggestions. The same content is also exposed at runtime:
+
+```ts
+import { agentContext } from "@rheo/sdk";
+// or
+import SDK from "@rheo/sdk";
+SDK.agentContext;
+```
+
+The markdown file is the authoritative source; the string export is regenerated from it at build time.
+
 ## Testing
 
 ```bash

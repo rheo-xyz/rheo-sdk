@@ -1,3 +1,13 @@
+/**
+ * Internal wrappers that lift a direct market {@link MarketOperation} into
+ * its `*OnBehalfOf` counterpart — the form the SizeFactory consumes when
+ * executing a delegated call through `callMarket`. Produced and consumed
+ * by {@link TxBuilder.build}; **not part of the public SDK surface**.
+ *
+ * @module v1.9/actions/onBehalfOf
+ * @internal
+ */
+
 import { Action, FunctionNameToAction } from "../../Authorization";
 import { Address } from "../../index";
 import {
@@ -28,6 +38,7 @@ import {
   MarketOperationParams,
 } from "./market";
 
+/** @internal Union of every v1.9 `*OnBehalfOf` function name. */
 export type OnBehalfOfFunctionName =
   | "depositOnBehalfOf"
   | "withdrawOnBehalfOf"
@@ -40,6 +51,7 @@ export type OnBehalfOfFunctionName =
   | "setCopyLimitOrderConfigsOnBehalfOf"
   | "setVaultOnBehalfOf";
 
+/** @internal Direct-to-delegated function name mapping. */
 export const MarketFunctionNameToOnBehalfOfFunctionName: Record<
   Exclude<MarketFunctionName, "repay" | "liquidate">,
   OnBehalfOfFunctionName
@@ -56,6 +68,7 @@ export const MarketFunctionNameToOnBehalfOfFunctionName: Record<
   setVault: "setVaultOnBehalfOf",
 };
 
+/** @internal Union of every v1.9 `*OnBehalfOf` parameter struct. */
 export type OnBehalfOfOperationParams =
   | DepositOnBehalfOfParamsStruct
   | WithdrawOnBehalfOfParamsStruct
@@ -68,6 +81,11 @@ export type OnBehalfOfOperationParams =
   | SetCopyLimitOrderConfigsOnBehalfOfParamsStruct
   | SetVaultOnBehalfOfParamsStruct;
 
+/**
+ * @internal Tagged delegated operation. `action` is the {@link Action} bit
+ * {@link TxBuilder} must include in the authorization bitmap wrapping the
+ * call.
+ */
 export type OnBehalfOfOperation<
   T extends OnBehalfOfOperationParams = OnBehalfOfOperationParams,
 > = {
@@ -77,6 +95,7 @@ export type OnBehalfOfOperation<
   externalParams: T;
 };
 
+/** @internal Wraps a `deposit` operation as `depositOnBehalfOf`. */
 export function depositOnBehalfOf(
   deposit: MarketOperation<DepositParamsStruct>,
   onBehalfOf: Address,
@@ -92,6 +111,7 @@ export function depositOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `withdraw` operation as `withdrawOnBehalfOf`. */
 export function withdrawOnBehalfOf(
   withdraw: MarketOperation<WithdrawParamsStruct>,
   onBehalfOf: Address,
@@ -107,6 +127,7 @@ export function withdrawOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `buyCreditLimit` operation as `buyCreditLimitOnBehalfOf`. */
 export function buyCreditLimitOnBehalfOf(
   buyCreditLimit: MarketOperation<BuyCreditLimitParamsStruct>,
   onBehalfOf: Address,
@@ -122,6 +143,10 @@ export function buyCreditLimitOnBehalfOf(
   };
 }
 
+/**
+ * @internal Wraps a `buyCreditMarket` operation as
+ * `buyCreditMarketOnBehalfOf`. `recipient` defaults to `onBehalfOf`.
+ */
 export function buyCreditMarketOnBehalfOf(
   params: MarketOperation<BuyCreditMarketParamsStruct>,
   onBehalfOf: Address,
@@ -139,6 +164,7 @@ export function buyCreditMarketOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `sellCreditLimit` operation as `sellCreditLimitOnBehalfOf`. */
 export function sellCreditLimitOnBehalfOf(
   sellCreditLimit: MarketOperation<SellCreditLimitParamsStruct>,
   onBehalfOf: Address,
@@ -154,6 +180,10 @@ export function sellCreditLimitOnBehalfOf(
   };
 }
 
+/**
+ * @internal Wraps a `sellCreditMarket` operation as
+ * `sellCreditMarketOnBehalfOf`. `recipient` defaults to `onBehalfOf`.
+ */
 export function sellCreditMarketOnBehalfOf(
   params: MarketOperation<SellCreditMarketParamsStruct>,
   onBehalfOf: Address,
@@ -171,6 +201,10 @@ export function sellCreditMarketOnBehalfOf(
   };
 }
 
+/**
+ * @internal Wraps a `selfLiquidate` operation as
+ * `selfLiquidateOnBehalfOf`. `recipient` defaults to `onBehalfOf`.
+ */
 export function selfLiquidateOnBehalfOf(
   selfLiquidate: MarketOperation<SelfLiquidateParamsStruct>,
   onBehalfOf: Address,
@@ -188,6 +222,7 @@ export function selfLiquidateOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `setUserConfiguration` operation as `setUserConfigurationOnBehalfOf`. */
 export function setUserConfigurationOnBehalfOf(
   setUserConfiguration: MarketOperation<SetUserConfigurationParamsStruct>,
   onBehalfOf: Address,
@@ -203,6 +238,7 @@ export function setUserConfigurationOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `setCopyLimitOrderConfigs` operation as `setCopyLimitOrderConfigsOnBehalfOf`. */
 export function setCopyLimitOrderConfigsOnBehalfOf(
   setCopyLimitOrderConfigs: MarketOperation<SetCopyLimitOrderConfigsParamsStruct>,
   onBehalfOf: Address,
@@ -218,6 +254,7 @@ export function setCopyLimitOrderConfigsOnBehalfOf(
   };
 }
 
+/** @internal Wraps a `setVault` operation as `setVaultOnBehalfOf`. */
 export function setVaultOnBehalfOf(
   setVault: MarketOperation<SetVaultParamsStruct>,
   onBehalfOf: Address,
@@ -233,6 +270,14 @@ export function setVaultOnBehalfOf(
   };
 }
 
+/**
+ * @internal Dynamic dispatcher: given a market function name and its
+ * params, returns the matching {@link OnBehalfOfOperation}. Returns
+ * `undefined` if the function has no delegated variant (e.g. legacy
+ * functions excluded from the mapping). Used by {@link TxBuilder.build} to
+ * convert each user-supplied {@link MarketOperation} into the form the
+ * SizeFactory's `callMarket` path expects.
+ */
 export function onBehalfOfOperation(
   market: Address,
   functionName: MarketFunctionName,
