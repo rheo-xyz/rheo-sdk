@@ -6,10 +6,10 @@
  * SizeFactory multicall (with automatic authorization wrapping when any op
  * targets a market).
  *
- * Compared to v1.8/v1.7 this version drops `compensate` and
- * `liquidateWithReplacement` and uses `maturity` (absolute unix seconds) in
- * place of the v1.8 `tenor` on market-order params. Limit orders supply
- * parallel `maturities[]` / `aprs[]` arrays for fixed-maturity offers.
+ * Compared to v1.8/v1.7 this version drops `liquidateWithReplacement` and
+ * uses `maturity` (absolute unix seconds) in place of the v1.8 `tenor` on
+ * market-order params. Limit orders supply parallel `maturities[]` /
+ * `aprs[]` arrays for fixed-maturity offers.
  *
  * @module v1.9/actions/market
  */
@@ -27,6 +27,10 @@ import {
   SetUserConfigurationParamsStruct,
   SetCopyLimitOrderConfigsParamsStruct,
   SetVaultParamsStruct,
+  RepayParamsStruct,
+  ClaimParamsStruct,
+  LiquidateParamsStruct,
+  CompensateParamsStruct,
 } from "../types/ethers-contracts/Rheo";
 
 /**
@@ -43,7 +47,11 @@ export type MarketFunctionName =
   | "selfLiquidate"
   | "setUserConfiguration"
   | "setCopyLimitOrderConfigs"
-  | "setVault";
+  | "setVault"
+  | "repay"
+  | "claim"
+  | "liquidate"
+  | "compensate";
 
 /**
  * Union of every parameter struct accepted by a v1.9 market function. The
@@ -60,7 +68,11 @@ export type MarketOperationParams =
   | SelfLiquidateParamsStruct
   | SetUserConfigurationParamsStruct
   | SetCopyLimitOrderConfigsParamsStruct
-  | SetVaultParamsStruct;
+  | SetVaultParamsStruct
+  | RepayParamsStruct
+  | ClaimParamsStruct
+  | LiquidateParamsStruct
+  | CompensateParamsStruct;
 
 /**
  * Tagged description of a single v1.9 market call. Produced by every
@@ -440,6 +452,128 @@ export class MarketActions {
     return {
       market,
       functionName: "setVault",
+      params,
+    };
+  }
+
+  /**
+   * Repays an outstanding debt position on behalf of `borrower`. Anyone may
+   * repay — the caller funds the principal + interest owed from their own
+   * market-internal balance.
+   *
+   * @param market - Rheo market contract address.
+   * @param params - `{ debtPositionId, borrower }`.
+   * @returns A {@link MarketOperation} tagged with `functionName: "repay"`.
+   *
+   * @example
+   * ```ts
+   * sdk.market.repay(market, {
+   *   debtPositionId: 7n,
+   *   borrower: bob,
+   * });
+   * ```
+   */
+  repay(
+    market: Address,
+    params: RepayParamsStruct,
+  ): MarketOperation<RepayParamsStruct> {
+    return {
+      market,
+      functionName: "repay",
+      params,
+    };
+  }
+
+  /**
+   * Claims a matured credit position, transferring the underlying borrow
+   * tokens from the market's internal balance to the position's current
+   * lender.
+   *
+   * @param market - Rheo market contract address.
+   * @param params - `{ creditPositionId }`.
+   * @returns A {@link MarketOperation} tagged with `functionName: "claim"`.
+   *
+   * @example
+   * ```ts
+   * sdk.market.claim(market, { creditPositionId: 42n });
+   * ```
+   */
+  claim(
+    market: Address,
+    params: ClaimParamsStruct,
+  ): MarketOperation<ClaimParamsStruct> {
+    return {
+      market,
+      functionName: "claim",
+      params,
+    };
+  }
+
+  /**
+   * Liquidates an undercollateralized debt position. The caller pays the
+   * position's outstanding debt and receives the underlying collateral plus
+   * the liquidation reward.
+   *
+   * @remarks
+   * `minimumCollateralProfit` protects the liquidator against unfavorable
+   * settlement: the call reverts if the collateral payout (net of the debt
+   * repaid) is below it. `deadline` must be a future unix timestamp; prefer
+   * `sdk.helpers.deadline(60)`.
+   *
+   * @param market - Rheo market contract address.
+   * @param params - `{ debtPositionId, minimumCollateralProfit, deadline }`.
+   * @returns A {@link MarketOperation} tagged with `functionName: "liquidate"`.
+   *
+   * @example
+   * ```ts
+   * sdk.market.liquidate(market, {
+   *   debtPositionId: 7n,
+   *   minimumCollateralProfit: 0n,
+   *   deadline: sdk.helpers.deadline(60),
+   * });
+   * ```
+   */
+  liquidate(
+    market: Address,
+    params: LiquidateParamsStruct,
+  ): MarketOperation<LiquidateParamsStruct> {
+    return {
+      market,
+      functionName: "liquidate",
+      params,
+    };
+  }
+
+  /**
+   * Swaps credit between two positions the caller controls, repaying (part
+   * of) the debt on `creditPositionWithDebtToRepayId` by forfeiting credit
+   * from `creditPositionToCompensateId`.
+   *
+   * @param market - Rheo market contract address.
+   * @param params - `{ creditPositionWithDebtToRepayId,
+   *   creditPositionToCompensateId, amount }`. Pass
+   *   `ethers.constants.MaxUint256` for `amount` to compensate the maximum
+   *   available. Pass `ethers.constants.MaxUint256` for
+   *   `creditPositionToCompensateId` to mint fresh credit instead of
+   *   burning an existing position.
+   * @returns A {@link MarketOperation} tagged with `functionName: "compensate"`.
+   *
+   * @example
+   * ```ts
+   * sdk.market.compensate(market, {
+   *   creditPositionWithDebtToRepayId: 7n,
+   *   creditPositionToCompensateId: 9n,
+   *   amount: 500n,
+   * });
+   * ```
+   */
+  compensate(
+    market: Address,
+    params: CompensateParamsStruct,
+  ): MarketOperation<CompensateParamsStruct> {
+    return {
+      market,
+      functionName: "compensate",
       params,
     };
   }

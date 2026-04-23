@@ -68,6 +68,124 @@ describe("@rheo/sdk v1.9", () => {
     );
   });
 
+  test("builds repay", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const params = {
+      debtPositionId: 7n,
+      borrower: bob,
+    };
+
+    const txs = sdk.tx.build(alice, [sdk.market.repay(market, params)]);
+
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(IRheo.encodeFunctionData("repay", [params]));
+  });
+
+  test("builds claim", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const params = { creditPositionId: 42n };
+
+    const txs = sdk.tx.build(alice, [sdk.market.claim(market, params)]);
+
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(IRheo.encodeFunctionData("claim", [params]));
+  });
+
+  test("builds liquidate", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const params = {
+      debtPositionId: 7n,
+      minimumCollateralProfit: 0n,
+      deadline: 1893457000n,
+    };
+
+    const txs = sdk.tx.build(alice, [sdk.market.liquidate(market, params)]);
+
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(IRheo.encodeFunctionData("liquidate", [params]));
+  });
+
+  test("builds compensate", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const params = {
+      creditPositionWithDebtToRepayId: 7n,
+      creditPositionToCompensateId: 9n,
+      amount: 500n,
+    };
+
+    const txs = sdk.tx.build(alice, [sdk.market.compensate(market, params)]);
+
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(IRheo.encodeFunctionData("compensate", [params]));
+  });
+
+  test("batched compensate gets OnBehalfOf wrapping and COMPENSATE auth bit", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const txs = sdk.tx.build(alice, [
+      sdk.market.deposit(market, {
+        amount: 100n,
+        to: alice,
+        token: weth,
+      }),
+      sdk.market.compensate(market, {
+        creditPositionWithDebtToRepayId: 7n,
+        creditPositionToCompensateId: 9n,
+        amount: 500n,
+      }),
+    ]);
+
+    const decoded = sdk.decode.calldata(txs[0].data);
+
+    expect(decoded).toContain("compensateOnBehalfOf");
+    expect(decoded).toContain("COMPENSATE");
+    expect(decoded).toContain("DEPOSIT");
+  });
+
+  test("batched repay/claim/liquidate pass through unwrapped with no auth bit", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const txs = sdk.tx.build(alice, [
+      sdk.market.repay(market, { debtPositionId: 1n, borrower: bob }),
+      sdk.market.claim(market, { creditPositionId: 2n }),
+      sdk.market.liquidate(market, {
+        debtPositionId: 3n,
+        minimumCollateralProfit: 0n,
+        deadline: 1893457000n,
+      }),
+    ]);
+
+    const decoded = sdk.decode.calldata(txs[0].data);
+
+    expect(decoded).toContain("repay");
+    expect(decoded).toContain("claim");
+    expect(decoded).toContain("liquidate");
+    expect(decoded).not.toContain("OnBehalfOf");
+    expect(decoded).not.toContain("setAuthorization");
+  });
+
   test("v1.9 ideal flow encoding + decoding", () => {
     const sdk = new SDK({
       sizeFactory,
