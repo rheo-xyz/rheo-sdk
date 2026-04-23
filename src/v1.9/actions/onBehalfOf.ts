@@ -31,6 +31,8 @@ import {
   SetCopyLimitOrderConfigsParamsStruct,
   SetVaultOnBehalfOfParamsStruct,
   SetVaultParamsStruct,
+  CompensateOnBehalfOfParamsStruct,
+  CompensateParamsStruct,
 } from "../types/ethers-contracts/Rheo";
 import {
   MarketFunctionName,
@@ -49,11 +51,12 @@ export type OnBehalfOfFunctionName =
   | "selfLiquidateOnBehalfOf"
   | "setUserConfigurationOnBehalfOf"
   | "setCopyLimitOrderConfigsOnBehalfOf"
-  | "setVaultOnBehalfOf";
+  | "setVaultOnBehalfOf"
+  | "compensateOnBehalfOf";
 
 /** @internal Direct-to-delegated function name mapping. */
 export const MarketFunctionNameToOnBehalfOfFunctionName: Record<
-  Exclude<MarketFunctionName, "repay" | "liquidate">,
+  Exclude<MarketFunctionName, "repay" | "liquidate" | "claim">,
   OnBehalfOfFunctionName
 > = {
   deposit: "depositOnBehalfOf",
@@ -66,6 +69,7 @@ export const MarketFunctionNameToOnBehalfOfFunctionName: Record<
   setUserConfiguration: "setUserConfigurationOnBehalfOf",
   setCopyLimitOrderConfigs: "setCopyLimitOrderConfigsOnBehalfOf",
   setVault: "setVaultOnBehalfOf",
+  compensate: "compensateOnBehalfOf",
 };
 
 /** @internal Union of every v1.9 `*OnBehalfOf` parameter struct. */
@@ -79,7 +83,8 @@ export type OnBehalfOfOperationParams =
   | SelfLiquidateOnBehalfOfParamsStruct
   | SetUserConfigurationOnBehalfOfParamsStruct
   | SetCopyLimitOrderConfigsOnBehalfOfParamsStruct
-  | SetVaultOnBehalfOfParamsStruct;
+  | SetVaultOnBehalfOfParamsStruct
+  | CompensateOnBehalfOfParamsStruct;
 
 /**
  * @internal Tagged delegated operation. `action` is the {@link Action} bit
@@ -265,6 +270,22 @@ export function setVaultOnBehalfOf(
     action: Action.SET_VAULT,
     externalParams: {
       params: setVault.params,
+      onBehalfOf,
+    },
+  };
+}
+
+/** @internal Wraps a `compensate` operation as `compensateOnBehalfOf`. */
+export function compensateOnBehalfOf(
+  compensate: MarketOperation<CompensateParamsStruct>,
+  onBehalfOf: Address,
+): OnBehalfOfOperation<CompensateOnBehalfOfParamsStruct> {
+  return {
+    market: compensate.market,
+    functionName: "compensateOnBehalfOf",
+    action: Action.COMPENSATE,
+    externalParams: {
+      params: compensate.params,
       onBehalfOf,
     },
   };
