@@ -40,6 +40,20 @@ interface Subcall {
 }
 
 /**
+ * @internal True when the subcall forwards a nonzero native-asset value.
+ * Such calls cannot be routed through the SizeFactory `multicall`/
+ * `callMarket` path — both are nonpayable — so the builder emits them as
+ * stand-alone transactions targeting the market directly (the market's
+ * `deposit` is payable).
+ */
+function hasNativeValue(subcall: Subcall): boolean {
+  return (
+    subcall.value !== undefined &&
+    !ethers.BigNumber.from(subcall.value).isZero()
+  );
+}
+
+/**
  * Encodes a batch of v1.9 operations into unsigned transactions the caller
  * can submit. Instantiated by the {@link SDK} when `version === "v1.9"` —
  * consumers access it through `sdk.tx.build(...)` rather than constructing
@@ -129,6 +143,21 @@ export class TxBuilder {
         data: op.calldata,
         value: undefined,
       }));
+  }
+
+  /**
+   * @internal Extracts native-value subcalls (e.g. ETH deposits) into
+   * stand-alone `TxArgs` calling the market directly, since the nonpayable
+   * SizeFactory route cannot forward value. The raw (non-`OnBehalfOf`)
+   * calldata is used: the signer is `msg.sender` and supplies `msg.value`,
+   * while the params' `to` still controls who gets credited.
+   */
+  private getNativeValueSubcalls(subcalls: Subcall[]): TxArgs[] {
+    return subcalls.filter(hasNativeValue).map((op) => ({
+      target: op.target,
+      data: op.calldata,
+      value: op.value,
+    }));
   }
 
   /** @internal True when at least one subcall needs an authorization bit. */
@@ -231,19 +260,29 @@ export class TxBuilder {
    * 1. **ERC-20 approvals come out first** as stand-alone transactions
    *    (one `TxArgs` per approve), targeting the token contract directly.
    *    The user must sign these before the SizeFactory can pull funds.
-   * 2. **The remaining operations are merged into a single SizeFactory
+   * 2. **Native-value operations come out next**, also as stand-alone
+   *    transactions targeting the market directly. The SizeFactory
+   *    `multicall`/`callMarket` functions are nonpayable, so an operation
+   *    carrying a nonzero `value` (e.g. a native ETH deposit) cannot ride
+   *    the factory route — it is emitted as a direct, payable market call
+   *    (raw function, no `*OnBehalfOf` wrapping, no authorization) placed
+   *    before the factory multicall so later operations can rely on the
+   *    deposited funds. The signer supplies `msg.value`; the params' `to`
+   *    controls who is credited.
+   * 3. **The remaining operations are merged into a single SizeFactory
    *    multicall.** Market operations targeting the same market are
    *    grouped under one `callMarket(market, multicall(...))`; market
    *    operations targeting different markets become separate `callMarket`
    *    entries; factory-level calls (subscribe/unsubscribe/etc.) appear
    *    inline in the outer multicall.
-   * 3. **Authorization is automatic.** If any market operation is present,
+   * 4. **Authorization is automatic.** If any market operation is present,
    *    the builder prepends `setAuthorization(sizeFactory, bitmap)` and
    *    appends `setAuthorization(sizeFactory, 0)` inside the outer
    *    multicall so the grant is established and cleared in the same
    *    transaction. Do not emit `setAuthorization` operations yourself —
-   *    doing so will double-grant.
-   * 4. **Direct-to-`*OnBehalfOf` rewriting.** Each market call is replaced
+   *    doing so will double-grant. Native-value operations hoisted in
+   *    step 2 contribute no authorization bits.
+   * 5. **Direct-to-`*OnBehalfOf` rewriting.** Each market call is replaced
    *    by its delegated counterpart (see
    *    {@link onBehalfOfOperation}); `onBehalfOf` is threaded into every
    *    one, and `recipient` (when applicable) defaults to `onBehalfOf`.
@@ -296,16 +335,24 @@ export class TxBuilder {
       ];
     } else {
       const erc20Subcalls = this.getERC20Subcalls(subcalls);
+      const nativeValueSubcalls = this.getNativeValueSubcalls(subcalls);
+      const factorySubcalls = subcalls.filter((op) => !hasNativeValue(op));
       const sizeFactorySubcallsDatas =
-        this.getSizeFactorySubcallsDatas(subcalls);
+        this.getSizeFactorySubcallsDatas(factorySubcalls);
+
+      if (sizeFactorySubcallsDatas.length === 0) {
+        return [...erc20Subcalls, ...nativeValueSubcalls];
+      }
+
       const [maybeAuth, maybeNullAuth] =
-        this.getAuthorizationSubcallsDatas(subcalls);
+        this.getAuthorizationSubcallsDatas(factorySubcalls);
 
       const multicall = this.ISizeFactory.encodeFunctionData("multicall", [
         [maybeAuth, ...sizeFactorySubcallsDatas, maybeNullAuth].filter(Boolean),
       ]);
       return [
         ...erc20Subcalls,
+        ...nativeValueSubcalls,
         {
           target: this.sizeFactory,
           data: multicall,
