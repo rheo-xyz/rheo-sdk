@@ -60,7 +60,9 @@ describe("@rheo/sdk v1.9", () => {
       rateProvider: ethers.constants.AddressZero,
     };
 
-    const txs = sdk.tx.build(alice, [sdk.market.buyCreditMarket(market, params)]);
+    const txs = sdk.tx.build(alice, [
+      sdk.market.buyCreditMarket(market, params),
+    ]);
 
     expect(txs[0].target).toBe(market);
     expect(txs[0].data).toBe(
@@ -184,6 +186,141 @@ describe("@rheo/sdk v1.9", () => {
     expect(decoded).toContain("liquidate");
     expect(decoded).not.toContain("OnBehalfOf");
     expect(decoded).not.toContain("setAuthorization");
+  });
+
+  test("single native ETH deposit forwards value directly to the market", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const params = { token: weth, amount: 100n, to: alice };
+
+    const txs = sdk.tx.build(alice, [sdk.market.deposit(market, params, 100n)]);
+
+    expect(txs).toHaveLength(1);
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(IRheo.encodeFunctionData("deposit", [params]));
+    expect(txs[0].value).toBe(100n);
+  });
+
+  test("batched native ETH deposit is hoisted out of the nonpayable factory multicall", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const depositParams = { token: weth, amount: 100n, to: alice };
+    const maturities = [1893456000n];
+    const aprs = [500n];
+
+    const txs = sdk.tx.build(alice, [
+      sdk.market.deposit(market, depositParams, 100n),
+      sdk.market.buyCreditLimit(market, { maturities, aprs }),
+    ]);
+
+    expect(txs).toHaveLength(2);
+
+    // tx 0: direct payable deposit to the market
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(
+      IRheo.encodeFunctionData("deposit", [depositParams]),
+    );
+    expect(txs[0].value).toBe(100n);
+
+    // tx 1: factory multicall with the rest of the batch, no value
+    expect(txs[1].target).toBe(sizeFactory);
+    expect(txs[1].value).toBeUndefined();
+
+    const decoded = sdk.decode.calldata(txs[1].data);
+    expect(decoded).toContain("buyCreditLimitOnBehalfOf");
+    expect(decoded).toContain("BUY_CREDIT_LIMIT");
+    expect(decoded).not.toContain("deposit");
+    expect(decoded).not.toContain("DEPOSIT");
+  });
+
+  test("native ETH deposit batched with an ERC-20 deposit only hoists the value-bearing one", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const ethDepositParams = { token: weth, amount: 100n, to: alice };
+    const usdcDepositParams = { token: usdc, amount: 200n, to: alice };
+
+    const txs = sdk.tx.build(alice, [
+      sdk.market.deposit(market, ethDepositParams, 100n),
+      sdk.market.deposit(market, usdcDepositParams),
+    ]);
+
+    expect(txs).toHaveLength(2);
+
+    expect(txs[0].target).toBe(market);
+    expect(txs[0].data).toBe(
+      IRheo.encodeFunctionData("deposit", [ethDepositParams]),
+    );
+    expect(txs[0].value).toBe(100n);
+
+    expect(txs[1].target).toBe(sizeFactory);
+    expect(txs[1].value).toBeUndefined();
+
+    const decoded = sdk.decode.calldata(txs[1].data);
+    expect(decoded).toContain("depositOnBehalfOf");
+    expect(decoded).toContain("DEPOSIT");
+    expect(decoded).toContain(
+      "0x0000000000000000000000000000000000008888", // usdc
+    );
+    expect(decoded).not.toContain(
+      "0x4200000000000000000000000000000000000006", // weth stays out of the multicall
+    );
+  });
+
+  test("approve + native ETH deposit emits no factory multicall", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const depositParams = { token: weth, amount: 100n, to: alice };
+
+    const txs = sdk.tx.build(alice, [
+      sdk.erc20.approve(usdc, sizeFactory, 500n),
+      sdk.market.deposit(market, depositParams, 100n),
+    ]);
+
+    expect(txs).toHaveLength(2);
+
+    expect(txs[0].target).toBe(usdc);
+    expect(txs[0].value).toBeUndefined();
+
+    expect(txs[1].target).toBe(market);
+    expect(txs[1].data).toBe(
+      IRheo.encodeFunctionData("deposit", [depositParams]),
+    );
+    expect(txs[1].value).toBe(100n);
+  });
+
+  test("explicit zero value stays in the factory multicall", () => {
+    const sdk = new SDK({
+      sizeFactory,
+      version: "v1.9",
+    });
+
+    const txs = sdk.tx.build(alice, [
+      sdk.market.deposit(market, { token: weth, amount: 100n, to: alice }, 0n),
+      sdk.market.buyCreditLimit(market, {
+        maturities: [1893456000n],
+        aprs: [500n],
+      }),
+    ]);
+
+    expect(txs).toHaveLength(1);
+    expect(txs[0].target).toBe(sizeFactory);
+    expect(txs[0].value).toBeUndefined();
+
+    const decoded = sdk.decode.calldata(txs[0].data);
+    expect(decoded).toContain("depositOnBehalfOf");
+    expect(decoded).toContain("buyCreditLimitOnBehalfOf");
   });
 
   test("v1.9 ideal flow encoding + decoding", () => {

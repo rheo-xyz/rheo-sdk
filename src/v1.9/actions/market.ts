@@ -111,7 +111,15 @@ export class MarketActions {
    * The ERC-20 allowance for the SizeFactory must already be in place — add
    * a leading `sdk.erc20.approve(token, sdk.sizeFactory, amount)` operation
    * if the user has not approved yet. The `value` parameter is only used
-   * when the market's underlying token is native (e.g. wrapped on deposit).
+   * when depositing the native asset (e.g. ETH auto-wrapped to WETH on
+   * deposit): pass the ETH amount as `value`, keep `token` as the wrapped
+   * token address, and no ERC-20 approval is needed for that deposit.
+   *
+   * Because the SizeFactory route is nonpayable, a deposit carrying a
+   * nonzero `value` is emitted by `sdk.tx.build` as its own stand-alone
+   * transaction calling the market's payable `deposit` directly — placed
+   * after any ERC-20 approvals and before the factory multicall holding
+   * the rest of the batch. The signer supplies `msg.value`.
    *
    * @param market - Rheo market contract address.
    * @param params - `{ token, amount, to }` — `to` is the onchain identity
@@ -122,11 +130,19 @@ export class MarketActions {
    *
    * @example
    * ```ts
+   * // ERC-20 deposit
    * sdk.market.deposit(market, {
    *   token: "0x4200000000000000000000000000000000000006", // WETH
    *   amount: 100n,
    *   to: alice,
    * });
+   *
+   * // Native ETH deposit (auto-wrapped by the market)
+   * sdk.market.deposit(
+   *   market,
+   *   { token: "0x4200000000000000000000000000000000000006", amount: 100n, to: alice },
+   *   100n, // msg.value
+   * );
    * ```
    */
   deposit(
